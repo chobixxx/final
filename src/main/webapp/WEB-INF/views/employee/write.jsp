@@ -189,23 +189,23 @@
 			    if (xhr.readyState == XMLHttpRequest.DONE) {
 			      var messageElem = document.getElementById("email-check-message");
 			      if (xhr.status == 200) {
-			        // 중복되지 않은 경우
-			        if (xhr.responseText == "false") {
-			          messageElem.style.color = "green";
-			          messageElem.innerHTML = "사용 가능한 이메일입니다.";
-			        }
-			        // 중복된 경우
-			        else {
-			          messageElem.style.color = "red";
-			          messageElem.innerHTML = "이미 등록된 이메일입니다.";
-			        }
+			    	  // 중복되지 않은 경우
+		                 if (xhr.responseText == "200") {
+		                   messageElem.style.color = "green";
+		                   messageElem.innerHTML = "사용 가능한 이메일입니다.";
+		                 }
+		                 // 중복된 경우
+		                 else if (xhr.responseText == "100") {
+		                   messageElem.style.color = "red";
+		                   messageElem.innerHTML = "이미 등록된 이메일입니다.";
+		                 }
 			      } else {
 			        messageElem.style.color = "red";
 			        messageElem.innerHTML = "서버 에러가 발생했습니다.";
 			      }
 			    }
 			  };
-			  xhr.open("GET", "/checkEmail?email=" + email);
+			  xhr.open("POST", "/company/checkEmail?email=" + email);
 			  xhr.send();
 			}
 			</script>

@@ -30,17 +30,24 @@ public class EmpService {
 			empRepository.save(employee);
 		}
 	}
+	
+	
+	//회원가입 - 이메일 중복 체크
+	public Employee checkEmail(String email) {
+	    return empRepository.findByEmail(email);
+	}
 
 	
 	//로그인
 	public boolean login(String email, String password) {
 		Employee employee = empRepository.findByEmailAndPassword(email, password);
-		
-		if(employee == null) {
-			return false; // 로그인 실패
-		} else {
-			return true; // 로그인 성공
-		}
+	    if(employee == null) {
+	        return false; // 로그인 실패
+	    } else if(employee.getEmail().equals("admin@gmail.com")) {
+	        return true; // 관리자 계정 로그인 성공
+	    } else {
+	        return false; // 일반 사용자 로그인 성공
+	    }
 	}
 	
 	
