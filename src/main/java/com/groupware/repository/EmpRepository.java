@@ -28,5 +28,9 @@ public interface EmpRepository extends JpaRepository<Employee, Integer> {
 	
 	//사번&비밀번호로 이메일 찾기
 	Employee findByEmpNoAndPassword(Integer empNo, String password);
+	
+	//Message - 사번으로 보낸사람&받은사람 찾기
+	Employee findByEmpNo(Integer empNo);
+
 
 }
