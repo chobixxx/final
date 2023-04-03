@@ -36,7 +36,7 @@ public class NoticeController {
 		Employee e = new Employee((int) model.getAttribute("employeeNo"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");// 날짜 출력 형식
 		String now = sdf.format(System.currentTimeMillis());// 오늘 날짜로 초기화
-		NoticeDTOL notice = new NoticeDTOL(title, content, password, now, 0, e);
+		NoticeDTO notice = new NoticeDTO(title, content, password, now, 0, e);
 		noticeService.writeNotice(notice);
 		model.addAttribute("notice", notice);
 
@@ -103,7 +103,7 @@ public class NoticeController {
 		int no = (int) model.getAttribute("noticeNo");
 		Employee e = new Employee((int) model.getAttribute("employeeNo"));
 
-		NoticeDTOL notice = new NoticeDTOL(no, title, content, password, e);
+		NoticeDTO notice = new NoticeDTO(no, title, content, password, e);
 		noticeService.updateNotice(notice);
 
 		return "redirect:noticeallview";
