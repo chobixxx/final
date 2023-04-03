@@ -1,4 +1,4 @@
-package team3.groupware5.controller;
+package com.groupware.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -71,7 +71,7 @@ public class TodolistController {
 		int empno =(int) model.getAttribute("employeeNo");		
 		int imp= Integer.parseInt(importance);
 		Employee e = new Employee(empno);
-		Todolist todolist = new Todolist(title, content, imp, date, time, e);
+		TodolistDTO todolist = new TodolistDTO(title, content, imp, date, time, e);
 		tdSve.insert(todolist);
 		model.addAttribute("todolist", todolist);
 		

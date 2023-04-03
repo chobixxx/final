@@ -1,4 +1,4 @@
-package team3.groupware5.controller;
+package com.groupware.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
@@ -43,7 +43,7 @@ public class BoardController {
 		Employee e = new Employee((int) model.getAttribute("employeeNo"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String now = sdf.format(System.currentTimeMillis());
-		Board board = new Board(title, content, password, now, 0, e);
+		BoardDTO board = new BoardDTO(title, content, password, now, 0, e);
 		boardService.writeBoard(board);
 		model.addAttribute("board", board);
 
@@ -69,7 +69,7 @@ public class BoardController {
 	public ArrayList getReplyno(@RequestParam("boardNo") int no) throws SQLException {
 		ModelAndView mv1 = new ModelAndView();
 		// 해당 게시글의 댓글
-		ArrayList<Reply> list = replyService.getReplyNo(no);
+		ArrayList<ReplyDTO> list = replyService.getReplyNo(no);
 		ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
 		list.forEach(v -> System.out.println(v));
 		for (int i = 0; i < list.size(); i++) {
@@ -103,10 +103,10 @@ public class BoardController {
 			throws SQLException {
 
 		Employee employee = new Employee((int) model.getAttribute("employeeNo"));
-		Board board = new Board(boardNo);
+		BoardDTO board = new BoardDTO(boardNo);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");// db용 날짜 출력 형식으로 초기화
 		String now = sdf.format(System.currentTimeMillis());// 오늘 날짜
-		Reply reply = new Reply(content, now, employee, board);
+		ReplyDTO reply = new ReplyDTO(content, now, employee, board);
 		replyService.writeReply(reply);
 		model.addAttribute("reply", reply);
 		return "success";
@@ -120,7 +120,7 @@ public class BoardController {
 		int no = (int) model.getAttribute("boardNo");
 		Employee employee = new Employee((int) model.getAttribute("employeeNo"));
 
-		Board board = new Board(no, title, content, password, employee);
+		BoardDTO board = new BoardDTO(no, title, content, password, employee);
 		boardService.updateBoard(board);
 
 		return "redirect:boardallview";

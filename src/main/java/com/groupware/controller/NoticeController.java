@@ -1,4 +1,4 @@
-package team3.groupware5.controller;
+package com.groupware.controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -36,7 +36,7 @@ public class NoticeController {
 		Employee e = new Employee((int) model.getAttribute("employeeNo"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");// 날짜 출력 형식
 		String now = sdf.format(System.currentTimeMillis());// 오늘 날짜로 초기화
-		Notice notice = new Notice(title, content, password, now, 0, e);
+		NoticeDTOL notice = new NoticeDTOL(title, content, password, now, 0, e);
 		noticeService.writeNotice(notice);
 		model.addAttribute("notice", notice);
 
@@ -103,7 +103,7 @@ public class NoticeController {
 		int no = (int) model.getAttribute("noticeNo");
 		Employee e = new Employee((int) model.getAttribute("employeeNo"));
 
-		Notice notice = new Notice(no, title, content, password, e);
+		NoticeDTOL notice = new NoticeDTOL(no, title, content, password, e);
 		noticeService.updateNotice(notice);
 
 		return "redirect:noticeallview";
