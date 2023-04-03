@@ -62,7 +62,7 @@ public class MessageController {
 	public void send(MessageDto dto, Model model, HttpServletResponse res) throws Exception {
 		
 		int empno = (int) model.getAttribute("empNo");		
-		dto.setSenderEmployeeNo(empno);
+		dto.setSenderEmpNo(empno);
 		
 		messageService.write(dto);
 
