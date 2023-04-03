@@ -20,7 +20,7 @@
 <link rel="preconnect2" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/static/assets/css/yy.css" />
+<link rel="stylesheet" href="../resources/static/assets/css/yy.css" />
 
 
 
@@ -29,7 +29,7 @@
 <div class="header1"  style="box-sizing: border-box;" >
 <div align="center">
 <span>
-<img src="resources/static/images/logo.png" style="width:130px; height:130px;" align="center">
+<img src="../resources/static/images/logo.png" style="width:130px; height:130px;" align="center">
 </span>
 <div align="right">
   <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
@@ -44,17 +44,17 @@
 
 			<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48"><img src="resources/static/images/avatar.jpg"
+				<span class="image avatar48"><img src="../resources/static/images/avatar.jpg"
 					alt="" /></span>
-				<h1 id="title">유재석</h1>
-				<p>인사팀</p>
+				<h1 id="title">${sessionScope.empName}</h1>
+				<p>${sessionScope.email}</p>
 			</div>
 
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
 					<li><a href="../BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
-					<li><a href="../search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="../company/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
 					<li><a href="../message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
 					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
 				</ul>

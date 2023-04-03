@@ -1,4 +1,4 @@
-package team3.groupware5.controller;
+package com.groupware.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.groupware.entity.Board;
+import com.groupware.entity.Employee;
+import com.groupware.entity.Reply;
+
 import team3.groupware5.service.BoardService;
 import team3.groupware5.service.ReplyService;
-import team3.groupware5.vo.Board;
-import team3.groupware5.vo.Employee;
-import team3.groupware5.vo.Reply;
 
 @Controller
 @RequestMapping("BoardServlet")

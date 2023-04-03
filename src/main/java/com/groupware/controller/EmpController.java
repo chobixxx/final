@@ -48,26 +48,27 @@ public class EmpController {
 	}
 	
 	
-//	//이메일 중복 확인
-//	@PostMapping("checkEmail")
-//    public @ResponseBody String checkEmail(@RequestParam String email) {
-//        try {
-//            Employee existEmployee = empService.fin
-//            if(existEmployee != null) {
-//                return "exist";
-//            } else {
-//                return "not_exist";
-//            }
-//        } catch (MessageException e) {
-//            return "error";
-//        }
-//    }
+	//이메일 중복 확인
+	@PostMapping("checkEmail")
+	@ResponseBody
+    public String checkEmail(@RequestParam("email") String email) {
+        try {
+            Employee existEmployee = empService.checkEmail(email);
+            if(existEmployee != null) {
+                return "100";
+            } else {
+                return "200";
+            }
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 	
 	
 	//로그인
 	@PostMapping("/login")
 	public ModelAndView login(HttpSession session, @RequestParam String email, @RequestParam String password) {
-	    ModelAndView mav = new ModelAndView();
+	    ModelAndView mv = new ModelAndView();
 	    
 	    // 이메일과 비밀번호를 사용하여 로그인을 시도
 	    boolean loginSuccess = empService.login(email, password);
@@ -76,14 +77,18 @@ public class EmpController {
 	        // 로그인 성공 시, 세션에 로그인 정보 저장
 	        session.setAttribute("email", email);
 	        session.setAttribute("loginStatus", "true");
-	        mav.setViewName("main"); // 메인 페이지로 이동
+	        if(email.equals("admin@gmail.com")) {
+	        	mv.setViewName("adminmain"); // 메인 페이지로 이동(admin)
+	        }else {
+	        	mv.setViewName("main"); // 메인 페이지로 이동(user)
+	        }
 	    } else {
 	        // 로그인 실패 시, 로그인 폼 페이지로 다시 이동
-	        mav.addObject("error", "이메일 또는 비밀번호가 일치하지 않습니다.");
-	        mav.setViewName("index");
+	        mv.addObject("error", "이메일 또는 비밀번호가 일치하지 않습니다.");
+	        mv.setViewName("index");
 	    }
 	    
-	    return mav;
+	    return mv;
 	}
 	
 	
