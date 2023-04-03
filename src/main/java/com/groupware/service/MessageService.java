@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.groupware.dto.MessageDto;
 import com.groupware.entity.Employee;
 import com.groupware.entity.Message;
-import com.groupware.repository.EmployeeRepository;
+import com.groupware.repository.EmpRepository;
 import com.groupware.repository.MessageRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,13 +20,13 @@ import lombok.RequiredArgsConstructor;
 public class MessageService {
 	
     private final MessageRepository messageRepository;
-    private final EmployeeRepository employeeRepository;
+    private final EmpRepository empRepository;
 
 	
 	@Transactional
 	public MessageDto write(MessageDto messageDto) throws Exception {
-		Employee receiver = employeeRepository.findByEmployeeNo(messageDto.getReceiverEmpNo());
-		Employee sender = employeeRepository.findByEmployeeNo(messageDto.getSenderEmpNo());
+		Employee receiver = empRepository.findByEmpNo(messageDto.getReceiverEmpNo());
+		Employee sender = empRepository.findByEmpNo(messageDto.getSenderEmpNo());
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");//날짜 출력 형식
 		String now = sdf.format(System.currentTimeMillis());//오늘 날짜로 초기화
