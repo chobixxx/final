@@ -17,8 +17,8 @@ public class MessageDto {
 	private int id;
 	private String title;
 	private String content;
-	private int senderEmployeeNo;
-	private int receiverEmployeeNo;
+	private int senderEmpNo;
+	private int receiverEmpNo;
 	//custom
 	private String writeDate;
 	private boolean isDeleted;
@@ -28,8 +28,8 @@ public class MessageDto {
 				message.getId(),
 				message.getTitle(),
 				message.getContent(),
-				message.getSender().getEmployeeNo(),
-				message.getReceiver().getEmployeeNo(),
+				message.getSender().getEmpNo(),
+				message.getReceiver().getEmpNo(),
 				message.getWriteDate(),
 				message.isDeleted()
 		);

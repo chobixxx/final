@@ -25,8 +25,8 @@ public class MessageService {
 	
 	@Transactional
 	public MessageDto write(MessageDto messageDto) throws Exception {
-		Employee receiver = employeeRepository.findByEmployeeNo(messageDto.getReceiverEmployeeNo());
-		Employee sender = employeeRepository.findByEmployeeNo(messageDto.getSenderEmployeeNo());
+		Employee receiver = employeeRepository.findByEmployeeNo(messageDto.getReceiverEmpNo());
+		Employee sender = employeeRepository.findByEmployeeNo(messageDto.getSenderEmpNo());
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");//날짜 출력 형식
 		String now = sdf.format(System.currentTimeMillis());//오늘 날짜로 초기화

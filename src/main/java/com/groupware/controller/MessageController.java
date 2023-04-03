@@ -24,7 +24,7 @@ import com.groupware.service.MessageService;
 
 @Controller
 @RequestMapping("message")
-@SessionAttributes({"employeeNo"})
+@SessionAttributes({"empNo"})
 public class MessageController {
 	
 	@Autowired
@@ -32,12 +32,12 @@ public class MessageController {
 
 	
 	//받은 편지함
-	@GetMapping(value =  "/received/{employeeNo}", produces = "application/json; charset=UTF-8")
-	public ModelAndView received(@PathVariable int employeeNo) throws SQLException {	
+	@GetMapping(value =  "/received/{empNo}", produces = "application/json; charset=UTF-8")
+	public ModelAndView received(@PathVariable int empNo) throws SQLException {	
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("receivedList", messageService.received(new Employee(employeeNo)));
+		mv.addObject("receivedList", messageService.received(new Employee(empNo)));
 		mv.setViewName("../message/receivedList");
 		
 		return mv;
@@ -46,11 +46,11 @@ public class MessageController {
 	
 	//보낸 메시지함
 	@GetMapping(value =  "/sent/{employeeNo}", produces = "application/json; charset=UTF-8")
-	public ModelAndView sent(@PathVariable int employeeNo) throws SQLException {	
+	public ModelAndView sent(@PathVariable int empNo) throws SQLException {	
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("sentList", messageService.sent(new Employee(employeeNo)));
+		mv.addObject("sentList", messageService.sent(new Employee(empNo)));
 		mv.setViewName("../message/sentList");
 		
 		return mv;
@@ -61,7 +61,7 @@ public class MessageController {
 	@RequestMapping(value = "/send")
 	public void send(MessageDto dto, Model model, HttpServletResponse res) throws Exception {
 		
-		int empno = (int) model.getAttribute("employeeNo");		
+		int empno = (int) model.getAttribute("empNo");		
 		dto.setSenderEmployeeNo(empno);
 		
 		messageService.write(dto);
@@ -74,7 +74,7 @@ public class MessageController {
 	@RequestMapping(value = "/receivedDelete", method = RequestMethod.GET)
 	public void receivedDelete(@RequestParam("id") int messageId, HttpServletResponse res, Model model) throws SQLException, IOException {
 		
-		int empno = (int) model.getAttribute("employeeNo");		
+		int empno = (int) model.getAttribute("empNo");		
 		
 		messageService.deleteMessageByReceiver(messageId, new Employee(empno));
 		
@@ -86,7 +86,7 @@ public class MessageController {
 	@RequestMapping(value = "/sendDelete", method = RequestMethod.GET)
 	public void sendDelete(@RequestParam("id") int messageId, HttpServletResponse res, Model model) throws SQLException, IOException {
 		
-		int empno = (int) model.getAttribute("employeeNo");	
+		int empno = (int) model.getAttribute("empNo");	
 		
 		messageService.deleteMessageBySender(messageId, new Employee(empno));
 		
