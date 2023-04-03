@@ -62,6 +62,8 @@
                 <th class="tg-l4e4">부서</th>
                 <th class="tg-l4e4">직급</th>
                 <th class="tg-l4e4">성별</th>
+                <th class="tg-l4e4">수정</th>
+                <th class="tg-l4e4">삭제</th>
             </tr>
         </thead>    
         <c:forEach var="employee" items="${employees}">
