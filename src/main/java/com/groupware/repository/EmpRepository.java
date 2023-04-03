@@ -20,7 +20,7 @@ public interface EmpRepository extends JpaRepository<Employee, Integer> {
 	//전체 직원 조회
 	List<Employee> findAll();
 	
-	// 직원 이름으로 검색
+	//직원 이름으로 검색
 	List<Employee> findByName(String name);
 	
 	//이메일&이름으로 비밀번호 찾기

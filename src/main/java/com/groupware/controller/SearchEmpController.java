@@ -2,6 +2,8 @@ package com.groupware.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +25,20 @@ public class SearchEmpController {
 	
 	//전체 직원 목록
 	@GetMapping("/allEmp")
-	public ModelAndView getEmployees() {
-	    ModelAndView mv = new ModelAndView("employeeList");
-	    List<EmployeeDTO> employees = empService.getAllEmployees();
-	    mv.addObject("employees", employees);
-	    mv.setViewName("list/listEmp");
+	public ModelAndView getEmployees(HttpSession session) {
+	    ModelAndView mv = new ModelAndView();
+	    if(session.getAttribute("email") != null && session.getAttribute("email").equals("admin@gmail.com")) {
+	        List<EmployeeDTO> employees = empService.getAllEmployees();
+	        mv.addObject("employees", employees);
+	        mv.setViewName("list/listAdmin");
+	    } else {
+	    	List<EmployeeDTO> employees = empService.getAllEmployees();
+	    	mv.addObject("employees", employees);
+	        mv.setViewName("list/listEmp"); // 권한이 없는 사용자의 경우 접근 거부 페이지로 이동
+	    }
 	    return mv;
 	}
+	    
 	
 	
 	//이름으로 직원 정보 검색
@@ -40,5 +49,15 @@ public class SearchEmpController {
 	    mv.addObject("employees", employees);
 	    return mv;
 	}
+	
+	
+	//직원 정보 수정(admin) - 폼으로 이동
+	@GetMapping("/update")
+	public String updateEmp() {
+		return "list/update";
+	}
+	
+	
+	//직원 정보 삭제(admin)
 
 }

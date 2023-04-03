@@ -70,18 +70,17 @@ public class EmpController {
 	public ModelAndView login(HttpSession session, @RequestParam String email, @RequestParam String password) {
 	    ModelAndView mv = new ModelAndView();
 	    
-	    // 이메일과 비밀번호를 사용하여 로그인을 시도
-	    boolean loginSuccess = empService.login(email, password);
+	    // 로그인 시도
+	    boolean loginSuccess = empService.login(session, email, password);
 	    
 	    if(loginSuccess) {
-	        // 로그인 성공 시, 세션에 로그인 정보 저장
-	        session.setAttribute("email", email);
-	        session.setAttribute("loginStatus", "true");
-	        if(email.equals("admin@gmail.com")) {
-	        	mv.setViewName("adminmain"); // 메인 페이지로 이동(admin)
-	        }else {
-	        	mv.setViewName("main"); // 메인 페이지로 이동(user)
+	        String userRole = (String) session.getAttribute("userRole");
+	        if(userRole.equals("admin")) {
+	            mv.setViewName("adminmain"); // 메인 페이지로 이동(admin)
+	        } else {
+	            mv.setViewName("main"); // 메인 페이지로 이동(user)
 	        }
+	        
 	    } else {
 	        // 로그인 실패 시, 로그인 폼 페이지로 다시 이동
 	        mv.addObject("error", "이메일 또는 비밀번호가 일치하지 않습니다.");

@@ -3,6 +3,8 @@ package com.groupware.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,14 +41,21 @@ public class EmpService {
 
 	
 	//로그인
-	public boolean login(String email, String password) {
-		Employee employee = empRepository.findByEmailAndPassword(email, password);
+	public boolean login(HttpSession session, String email, String password) {
+	    Employee employee = empRepository.findByEmailAndPassword(email, password);
 	    if(employee == null) {
 	        return false; // 로그인 실패
-	    } else if(employee.getEmail().equals("admin@gmail.com")) {
-	        return true; // 관리자 계정 로그인 성공
 	    } else {
-	        return false; // 일반 사용자 로그인 성공
+	        // 세션에 사용자 정보 저장
+	        session.setAttribute("email", email);
+	        session.setAttribute("loginStatus", "true");
+	        session.setAttribute("userRole", employee.getRole());
+	        
+	        if(employee.getRole().equals("admin")) {
+	            return true; // 관리자 계정 로그인 성공
+	        } else {
+	            return true; // 일반 사용자 로그인 성공
+	        }
 	    }
 	}
 	
