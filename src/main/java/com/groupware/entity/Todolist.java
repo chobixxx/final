@@ -1,5 +1,4 @@
-package team3.groupware5.vo;
-
+package com.groupware.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,15 +39,15 @@ public class Todolist {
    private String time;//시간
    @ManyToOne
    @NonNull
-   @JoinColumn(name="employeeNo")
-   private Employee employeeNo;
+   @JoinColumn(name="emp_no")
+   private Employee empNo;
 @Override
 public String toString() {
 	StringBuilder builder = new StringBuilder();
 	builder.append("Todolist [num=");
 	builder.append(num);
 	builder.append(", employeeNo=");
-	builder.append(employeeNo.getEmployeeNo());
+	builder.append(empNo.getEmpNo());
 	builder.append(", title=");
 	builder.append(title);
 	builder.append(", content=");

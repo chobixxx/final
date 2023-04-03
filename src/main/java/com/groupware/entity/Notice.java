@@ -1,4 +1,4 @@
-package team3.groupware5.vo;
+package com.groupware.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,15 +53,15 @@ public class Notice {
 	
 	@ManyToOne
 	@NonNull
-	@JoinColumn(name="employeeNo")
-	private Employee employeeNo;
+	@JoinColumn(name="emp_no")
+	   private Employee empNo;
 	
 	public Notice (int no,String title,String content,String password,Employee employeeno) {
 		this.no=no;
 		this.title = title;
 		this.content= content;
 		this.password= password;
-		this.employeeNo =employeeno;
+		this.empNo =employeeno;
 	}
 	
 	 @Override
@@ -80,7 +80,8 @@ public class Notice {
 	       builder.append(", 조회수: ");
 	       builder.append(hit);
 	       builder.append(", 사원번호: ");
-	       builder.append(employeeNo.getEmployeeNo());
+	   	builder.append(empNo.getEmpNo());
+
 	       return builder.toString();
 	    }
 	

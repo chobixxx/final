@@ -1,5 +1,4 @@
-package team3.groupware5.vo;
-
+package com.groupware.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,8 +42,8 @@ public class Reply {
 	
 	@ManyToOne
 	@NonNull
-	@JoinColumn(name="employeeNo")
-	private Employee employeeNo;
+	@JoinColumn(name="emp_no")
+	   private Employee empNo;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NonNull
@@ -61,7 +60,7 @@ public class Reply {
 	       builder.append(", 작성일 : ");
 	       builder.append(writedate);
 	       builder.append(", 사원번호: ");
-	       builder.append(employeeNo.getEmployeeNo());
+	   	   builder.append(empNo.getEmpNo());
 	       builder.append(", 게시판번호: ");
 	       builder.append(boardNo.getNo());
 	       return builder.toString();

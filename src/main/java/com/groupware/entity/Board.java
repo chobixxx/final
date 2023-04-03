@@ -1,4 +1,4 @@
-package team3.groupware5.vo;
+package com.groupware.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +58,8 @@ public class Board {
 	
 	@ManyToOne
 	@NonNull
-	@JoinColumn(name="employeeNo")
-	private Employee employeeNo;
+	@JoinColumn(name="emp_no")
+	   private Employee empNo;
 	
 	@OneToMany(mappedBy = "boardNo" , cascade = CascadeType.ALL)
 	private List<Reply> reply = new ArrayList<Reply>();
@@ -73,7 +73,7 @@ public class Board {
 		this.title = title;
 		this.content= content;
 		this.password= password;
-		this.employeeNo =employeeno;
+		this.empNo =employeeno;
 	}
 	
 	 @Override
@@ -92,7 +92,8 @@ public class Board {
 	       builder.append(", 조회수: ");
 	       builder.append(hit);
 	       builder.append(", 사원번호: ");
-	       builder.append(employeeNo.getEmployeeNo());
+	   	builder.append(empNo.getEmpNo());
+
 	       return builder.toString();
 	    }
 

@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: root
+    password: vndtjs12!
     url: jdbc:mysql://localhost/hta?characterEncoding=UTF-8
     username: root
   jpa:
