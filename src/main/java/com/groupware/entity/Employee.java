@@ -49,6 +49,11 @@ public class Employee {
 	
     @Column(name = "role", nullable = false)
     private String role = "user";
+    
+    //Message 관련 생성자
+    public Employee(int empNo) {
+        this.empNo = empNo;
+     }
 	
 	
 	public static Employee toEmployee(EmployeeDTO employeeDTO) {
