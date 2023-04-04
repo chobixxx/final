@@ -23,6 +23,7 @@ import com.groupware.entity.Board;
 import com.groupware.entity.Employee;
 import com.groupware.entity.Reply;
 import com.groupware.service.BoardService;
+import com.groupware.service.ReplyService;
 
 @Controller
 @RequestMapping("BoardServlet")

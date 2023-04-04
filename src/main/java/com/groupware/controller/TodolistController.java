@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import team3.groupware5.repository.EmployeeDAO;
-import team3.groupware5.repository.TodolistDAO;
-import team3.groupware5.service.TodolistService;
-import team3.groupware5.vo.Employee;
-import team3.groupware5.vo.Todolist;
+import com.groupware.dto.TodolistDTO;
+import com.groupware.entity.Employee;
+import com.groupware.service.TodolistService;
+
+
 
 @RestController
 @RequestMapping("todolist")
@@ -33,10 +31,7 @@ public class TodolistController {
 	
 	@Autowired
 	public TodolistService tdSve;
-	@Autowired
-	public TodolistDAO tdDao;
-	@Autowired
-	public EmployeeDAO dao;
+
 
 	@GetMapping(value =  "/allview", produces = "application/json; charset=UTF-8")
 	public ModelAndView allview() throws SQLException {

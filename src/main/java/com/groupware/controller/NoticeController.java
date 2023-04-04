@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import team3.groupware5.service.EmployeeService;
-import team3.groupware5.service.NoticeService;
-import team3.groupware5.vo.Employee;
-import team3.groupware5.vo.Notice;
+import com.groupware.dto.NoticeDTO;
+import com.groupware.entity.Employee;
+import com.groupware.service.EmpService;
+import com.groupware.service.NoticeService;
+
+
 
 @Controller
 @RequestMapping("NoticeServlet")
@@ -26,7 +28,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 
 	@Autowired
-	private EmployeeService employeeService;
+	private EmpService empService;
 
 	// 공지사항 글쓰기
 	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST)
