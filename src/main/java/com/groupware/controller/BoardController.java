@@ -18,12 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.groupware.dto.BoardDTO;
 import com.groupware.entity.Board;
 import com.groupware.entity.Employee;
 import com.groupware.entity.Reply;
-
-import team3.groupware5.service.BoardService;
-import team3.groupware5.service.ReplyService;
+import com.groupware.service.BoardService;
 
 @Controller
 @RequestMapping("BoardServlet")
