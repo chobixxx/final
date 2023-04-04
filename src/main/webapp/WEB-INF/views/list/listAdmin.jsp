@@ -25,7 +25,7 @@
 <h3>직원 정보 조회</h3>
 
     <!-- board seach area -->
-<%--     <div id="board-search">
+     <div id="board-search">
         <div class="container">
             <div class="search-window">
                 <form name="form1" method="post" action="searchno">
@@ -45,7 +45,7 @@
     </select>
     <input name="keyword" value="${map.keyword}">
     <input type="submit" value="조회">
-</form> --%>
+</form>
 
             </div>
         </div>
@@ -74,10 +74,10 @@
                 <td class="tg-baqh">${employee.position}</td>
                 <td class="tg-baqh">${employee.gender}</td>
 				<td class="tg-baqh">
-				  <button onclick='location.href="${pageContext.request.contextPath}/search/SearchServlet/delete?employeeNo=${evo.employeeNo}"'>탈퇴</button>
+				  <button onclick='location.href="${pageContext.request.contextPath}/company/update?empNo=${employee.empNo}"'>수정</button>
 				</td>
 				<td class="tg-baqh">
-				  <button onclick='location.href="${pageContext.request.contextPath}/search/SearchServlet/updateView?employeeNo=${evo.employeeNo}"'>수정</button>
+				  <button onclick='location.href="${pageContext.request.contextPath}/company/delete?empNo=${employee.empNo}"'>탈퇴</button>
 				</td>
 			</tr>
 		</c:forEach>

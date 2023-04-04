@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -103,6 +104,25 @@ public class EmpService {
             employeeDTOs.add(employeeDTO);
         }
         return employeeDTOs;
+    }
+    
+    
+    //사번으로 직원 찾아서 정보 수정
+    public Employee findByEmpNo(Integer empNo) {
+        return empRepository.findByEmpNo(empNo);
+    }
+    
+    
+    //직원 정보 수정 후 저장
+    public void updateEmp(Employee employee) {
+        empRepository.save(employee);
+    }
+    
+    
+    //직원 정보 삭제
+    @Transactional
+    public void deleteEmp(Integer empNo) {
+        empRepository.deleteByEmpNo(empNo);
     }
     
     
