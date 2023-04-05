@@ -2,7 +2,9 @@ package com.groupware.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,14 +41,23 @@ public class EmpService {
 
 	
 	//로그인
-	public boolean login(String email, String password) {
-		Employee employee = empRepository.findByEmailAndPassword(email, password);
+	public boolean login(HttpSession session, String email, String password) {
+	    Employee employee = empRepository.findByEmailAndPassword(email, password);
 	    if(employee == null) {
 	        return false; // 로그인 실패
-	    } else if(employee.getEmail().equals("admin@gmail.com")) {
-	        return true; // 관리자 계정 로그인 성공
 	    } else {
-	        return false; // 일반 사용자 로그인 성공
+	        // 세션에 사용자 정보 저장
+	        session.setAttribute("email", email);
+	        session.setAttribute("name", employee.getName());
+	        session.setAttribute("empNo", employee.getEmpNo());
+	        session.setAttribute("loginStatus", "true");
+	        session.setAttribute("userRole", employee.getRole());
+	        
+	        if(employee.getRole().equals("admin")) {
+	            return true; // 관리자 계정 로그인 성공
+	        } else {
+	            return true; // 일반 사용자 로그인 성공
+	        }
 	    }
 	}
 	
@@ -97,17 +108,29 @@ public class EmpService {
     }
     
     
+    //사번으로 직원 찾아서 정보 수정
+    public Employee findByEmpNo(Integer empNo) {
+        return empRepository.findByEmpNo(empNo);
+    }
+    
+    
+    //직원 정보 수정 후 저장
+    public void updateEmp(Employee employee) {
+        empRepository.save(employee);
+    }
+    
+    
+    //직원 정보 삭제
+    @Transactional
+    public void deleteEmp(Integer empNo) {
+        empRepository.deleteByEmpNo(empNo);
+    }
+    
+    
     // 이름으로 직원 검색
     public List<Employee> getEmpByName(String name) {
         List<Employee> employees = empRepository.findByName(name);
         return employees;
     }
-
-    //이메일로 체크
-    public Optional<Employee> findByEmail(String email) {
-    	return Optional.ofNullable(empRepository.findByEmail(email));
-    }
-
-
 	
 }

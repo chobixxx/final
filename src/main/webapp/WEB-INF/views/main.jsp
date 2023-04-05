@@ -44,7 +44,7 @@
 			<div id="logo">
 				<span class="image avatar48"><img src="../resources/static/images/avatar.jpg"
 					alt="" /></span>
-				<h1 id="title">${sessionScope.employeeName}</h1>
+				<h1 id="title">${sessionScope.empNo}｜${sessionScope.name}</h1>
 				<p>${sessionScope.email}</p>
 			</div>
 

@@ -30,46 +30,56 @@
 <center>
 <h3>직원 정보 수정</h3>
 <br>
-
-<!-- 
-	http://localhost/step05_customer/update.jsp
-	http://localhost/step05_customer/CustomerServlet/update
-	http://localhost/step05_customer/CustomerServlet/allView
- -->
-<form action="../SearchServlet/update?employeeNo=${requestScope.evo.employeeNo}" method="post">
+	<form action="/company/update" method="post">
+ 	 <input type="hidden" name="empNo" value="${employee.empNo}" />
 
 	<table class="tg">
 	<thead>
 	  <tr>
 	    <th class="tg-calz" width=30%>사번</th>
-	    <th class="tg-baqh" width=50%>-${requestScope.evo.employeeNo}-</th>
+	    <th class="tg-baqh" width=50%>-${employee.empNo}-</th>
+	    <input type="hidden" name="empNo" value="${employee.empNo}" />
 	  </tr>
 	</thead>
 	<tbody>
-	  <tr>
-	    <td class="tg-calz" width=30%>메일</td>
-	    <td class="tg-baqh" width=50%>${requestScope.evo.email}</td>
-	  </tr>
+		<tr>
+		  <td class="tg-calz" width=30%>메일</td>
+		  <td class="tg-baqh" width=50%>${employee.email}</td>
+		  <input type="hidden" name="email" value="${employee.email}" />
+		</tr>
 	  <tr>
 	    <td class="tg-calz" width=30%>이름</td>
-	    <td class="tg-baqh" width=50%>${requestScope.evo.employeeName}</td>
+	    <td class="tg-baqh" width=50%>${employee.name}</td>
+	    <input type="hidden" name="name" value="${employee.name}" />
 	  </tr>
+	  <tr>
+	  <td class="tg-calz" width=30%>성별</td>
+	  <td class="tg-baqh" width=50%>${employee.gender}</td>
+	  <input type="hidden" name="gender" value="${employee.gender}" />
+		</tr>
 	  <tr>
 	    <td class="tg-calz" width=30%>부서</td>
 	    <td class="tg-baqh" width=50%>
-	    	<input type="type" name="teamName" value="${requestScope.evo.teamName}">
+	    		<input type="radio" name="team" value="경영팀" checked>경영팀
+				<input type="radio" name="team" value="기획팀">기획팀
+				<input type="radio" name="team" value="인사팀">인사팀
+				<input type="radio" name="team" value="영업팀">영업팀<br>	
 	    </td>
 	  </tr>
 	  <tr>
 	    <td class="tg-calz" width=30%>비번</td>
 	    <td class="tg-baqh" width=50%>
-	    	<input type="password" name="password" value="${requestScope.evo.password}">
+	    	<input type="password" name="password" value="${employee.password}">
 	    </td>
 	  </tr>
 	  <tr>
 	    <td class="tg-calz" width=30%>직급</td>
 	    <td class="tg-baqh" width=50%>
-	    	<input type="type" name="positionName" value="${requestScope.evo.positionName}">
+	    		<input type="radio" name="position" value="사원" checked>사원
+				<input type="radio" name="position" value="대리">대리
+				<input type="radio" name="position" value="과장">과장
+				<input type="radio" name="position" value="차장">차장
+				<input type="radio" name="position" value="부장">부장<br>
 	    </td>
 	  </tr>
 	</tbody>
@@ -78,7 +88,7 @@
 
 	<input type="submit" value="수정" > &nbsp;
 	<input type="reset" value="취소">&nbsp;
-	<input type="button" value="모두보기" Onclick="location.href='${pageContext.request.contextPath}/search/SearchServlet/allView'">
+	<input type="button" value="모두보기" Onclick="location.href='${pageContext.request.contextPath}/company/allEmp'">
 </form>
 
 </body>

@@ -22,7 +22,7 @@
 					</div>
 				</h5>
 				<p class="w3-center">
-					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round" Onclick="location.href='${pageContext.request.contextPath}/index.html'">Login</button>
+					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round" Onclick="location.href='/'">Login</button>
 					<button type="reset" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
 				</p>
 			</div>
