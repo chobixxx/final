@@ -24,4 +24,9 @@ public class Approver {
 
     private String name;
 
+	public String getEmail() {
+		// TODO Auto-generated method stub
+		return this.getEmail();
+	}
+
 }

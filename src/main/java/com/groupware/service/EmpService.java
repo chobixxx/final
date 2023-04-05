@@ -2,11 +2,13 @@ package com.groupware.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.groupware.dto.EmployeeDTO;
+import com.groupware.entity.Document;
 import com.groupware.entity.Employee;
 import com.groupware.exception.MessageException;
 import com.groupware.exception.NotExistException;
@@ -102,5 +104,12 @@ public class EmpService {
         List<Employee> employees = empRepository.findByName(name);
         return employees;
     }
+
+    //이메일로 체크
+    public Optional<Employee> findByEmail(String email) {
+    	return Optional.ofNullable(empRepository.findByEmail(email));
+    }
+
+
 	
 }

@@ -22,8 +22,8 @@ import com.groupware.entity.Board;
 import com.groupware.entity.Employee;
 import com.groupware.entity.Reply;
 
-import team3.groupware5.service.BoardService;
-import team3.groupware5.service.ReplyService;
+import groupware.service.BoardService;
+import groupware.service.ReplyService;
 
 @Controller
 @RequestMapping("BoardServlet")
