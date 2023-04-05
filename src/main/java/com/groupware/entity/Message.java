@@ -41,14 +41,14 @@ public class Message {
 	@Column(nullable = false)
 	private boolean deletedByReceiver;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "sender", referencedColumnName = "empNo")
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "sender", referencedColumnName = "empNo")
+//	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private Employee sender; //보낸사람
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "receiver", referencedColumnName = "empNo")
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "receiver", referencedColumnName = "empNo")
+//	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private Employee receiver; //받은사람
 	
 	@Column(nullable = false)

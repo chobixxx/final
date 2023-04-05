@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.groupware.dto.EmployeeDTO;
-import com.groupware.entity.Document;
 import com.groupware.entity.Employee;
 import com.groupware.exception.MessageException;
-import com.groupware.exception.NotExistException;
 import com.groupware.repository.EmpRepository;
 
 @Service

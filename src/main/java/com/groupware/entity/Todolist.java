@@ -37,9 +37,9 @@ public class Todolist {
    private String date;//날짜
    @NonNull
    private String time;//시간
-   @ManyToOne
-   @NonNull
-   @JoinColumn(name="emp_no")
+//   @ManyToOne
+//   @NonNull
+//   @JoinColumn(name="emp_no")
    private Employee empNo;
 @Override
 public String toString() {
