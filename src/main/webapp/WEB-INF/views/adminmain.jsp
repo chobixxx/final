@@ -46,7 +46,7 @@
 			<div id="logo">
 				<span class="image avatar48"><img src="../resources/static/images/avatar.jpg"
 					alt="" /></span>
-				<h1 id="title">${sessionScope.empName}</h1>
+				<h1 id="title">${sessionScope.empNo}｜${sessionScope.name}</h1>
 				<p>${sessionScope.email}</p>
 			</div>
 
@@ -54,7 +54,7 @@
 			<nav id="nav">
 				<ul>
 					<li><a href="../BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
-					<li><a href="../company/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="../company/allEmp" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
 					<li><a href="../message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
 					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
 				</ul>

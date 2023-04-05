@@ -1,217 +1,134 @@
-<%@page import="com.groupware.entity.Employee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<title>사원등록</title>
-<style>
-  table{
-    text-align: center;
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  th, td {
-    border: 1px solid gray;
-    height: 75px;
-  }
-  th{   
-    height:100px;
-    background-color: black;
-    color:white;
-    font-size: 30px;
-    font-weight: bold;
-  }
-  .title{
-    font-weight: bold;
-  }
-  .form-wrapper {
-    width:600px;
-    text-align: center;
-    margin: 200px auto;          
-  }
-  #joinForm{
-    text-align: center;
-  }
-  input[type=text], input[type=password]  {
-    border: 0 solid black;
-    width: 200px;
-    height:30px;
-  }
-  
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
 
-  select {
-    width: 200px;
-    height:40px;
-    font-size: 15px;  
-  }
-  option {
-    padding-left: 40px;
-  }
-  #check {
-    font-size: 10px; 
-  }
-  
-  /* button */
-  .btn_join{
-    width: 130px; 
-    height:45px;
-    background-color:black;
-    color:white;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .btn_cancel{
-    width: 130px; 
-    height:45px;
-    background-color:black;
-    color:white;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .btn_join:hover{
-    width: 130px; 
-    height:45px;
-    background-color:white;
-    border: 1px solid black;
-    color:black;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .btn_cancel:hover{
-    width: 130px; 
-    height:45px;
-    background-color:white;
-    border: 1px solid black;
-    color:black;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .btn_div{
-    margin-top: 50px;
-    text-align: center;
-  }
-  .btn_span1 {
-    margin-right: 10px;
-  }  
+    <!-- Title Page-->
+    <title>내일여행 직원 등록</title>
 
-</style>
+    <!-- Icons font CSS-->
+    <link href="../resources/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="../resources/static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="../resources/static/https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="../resources/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../resources/static/css/register_main.css" rel="stylesheet" media="all">
 </head>
+
 <body>
-   <div class="entire-wrap">
-    <main>
-      
-        <div class="form-wrapper">
-          
-          <form method="post" action="${pageContext.request.contextPath}/company/join">
-            <table width="100%">   
-              <tr>
-                <th colspan='2'>Registration</th>
-              <tr>
-              <td width=30% class="title">Email</td>
-              <td width=70%>
-                  <input type="text" id="email" name="email" required>
-                  <button type="button" onclick="checkDuplicateEmail()">중복 확인</button>
-                  <div id="email-check-message"></div>
-              </td>
-              </tr>
-              <tr>
-              <td width=30% class="title">Password</td>
-              <td width=70%>
-                  <input type="password" id="pw" name="password" placeholder="영문, 숫자 포함 8~16자이내 ">
-              </td>
-              </tr>  
-<!--               <tr>
-              <td width=30% class="title">Password Check</td>
-              <td width=70%>
-                <input type="password" id="pw_chk" name="password" placeholder="영문, 숫자 포함 8~16자이내">
-              </td>
-              </tr> -->
-              <tr>
-              <td width=30% class="title">Name</td>
-              <td width=70% >
-                  <input type="text" id="name" name="name" required>
-              </td>
-              </tr>        
-              <tr>
-				<td width=30% class="title">Team</td>
-                <td>            
-				<input type="radio" name="team" value="경영팀" checked>경영팀
-				<input type="radio" name="team" value="기획팀">기획팀
-				<input type="radio" name="team" value="인사팀">인사팀
-				<input type="radio" name="team" value="영업팀">영업팀
-				<input type="radio" name="team" value="관리팀">관리팀<br>	
-                </td>
-              </tr> 
-              <tr>
-              <td width=30% class="title">Position</td>
-                <td>
-				<input type="radio" name="position" value="사원" checked>사원
-				<input type="radio" name="position" value="대리">대리
-				<input type="radio" name="position" value="과장">과장
-				<input type="radio" name="position" value="차장">차장
-				<input type="radio" name="position" value="부장">부장
-				<input type="radio" name="position" value="관리자">관리자<br>	
-                  </td>
-              </tr>    
-               <tr>
-              <td width=30% class="title">gender</td>
-                <td>
-			    <input type="radio" name="gender" value="Male" checked>남성
-			    <input type="radio" name="gender" value="Female">여성
-                  </td>
-              </tr>
-            </table>
-            <div class="btn_div">
-              <span class="btn_span1">
-                <button class="btn_join" type="submit" value="회원가입">Sign Up</button>
-              </span>
-              <span class="btn_span2">
-                <button class="btn_cancel" type="reset" value="취소">Cancel</button>
-              </span>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <form method="POST" action="${pageContext.request.contextPath}/company/join">
+                        <div class="input-group">
+                            <label class="label">Email</label>
+                            <input class="input--style-4" type="text" id="email" name="email" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">이름</label>
+                                    <input class="input--style-4" type="text" id="name" name="name" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+									<label class="label">성별</label>
+									<div class="p-t-10">
+										<label class="radio-container m-r-45">Male
+											<input type="radio" checked="checked" name="gender" value="Male">
+											<span class="checkmark"></span>
+										</label>
+										<label class="radio-container">Female
+											<input type="radio" name="gender" value="Female">
+											<span class="checkmark"></span>
+										</label>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">password</label>
+                                    <input class="input--style-4" type="password" id="pw" name="password" placeholder="영문, 숫자 포함 8~16자이내 ">
+                                </div>
+                            </div>
+<!--                             <div class="col-3">
+                                <div class="input-group">
+                                    <label class="label">password confirm</label>
+                                    <input class="input--style-4" type="password" name="passwordConfirm">
+                                </div>
+                            </div>
+                            <div class="input-group" style="display:flex;align-items:flex-end;">
+								<button class="btn btn--radius-2 btn--blue" type="submit" style="height:50px;">확인</button>
+                            </div>
+                        </div> -->
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+									<label class="label">부서</label>
+									<div class="rs-select2 js-select-simple select--no-search">
+										<select name="team">
+											<option disabled="disabled" selected="selected">부서 선택</option>
+											<option value="경영팀">경영팀</option>
+											<option value="기획팀">기획팀</option>
+											<option value="인사팀">인사팀</option>
+											<option value="관리팀">영업팀</option>
+										</select>
+										<div class="select-dropdown"></div>
+									</div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+									<label class="label">직급</label>
+									<div class="rs-select2 js-select-simple select--no-search">
+										<select name="position">
+											<option disabled="disabled" selected="selected">직급 선택</option>
+											<option value="사원">사원</option>
+											<option value="대리">대리</option>
+											<option value="과장">과장</option>
+											<option value="차장">차장</option>
+											<option value="부장">부장</option>
+										</select>
+										<div class="select-dropdown"></div>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </form>   
-          
-			<script>
-			function checkDuplicateEmail() {
-			  var email = document.getElementById("email").value;
-			  if (email == "") {
-			    alert("이메일을 입력해주세요.");
-			    return;
-			  }
-			  var xhr = new XMLHttpRequest();
-			  xhr.onreadystatechange = function() {
-			    if (xhr.readyState == XMLHttpRequest.DONE) {
-			      var messageElem = document.getElementById("email-check-message");
-			      if (xhr.status == 200) {
-			    	  // 중복되지 않은 경우
-		                 if (xhr.responseText == "200") {
-		                   messageElem.style.color = "green";
-		                   messageElem.innerHTML = "사용 가능한 이메일입니다.";
-		                 }
-		                 // 중복된 경우
-		                 else if (xhr.responseText == "100") {
-		                   messageElem.style.color = "red";
-		                   messageElem.innerHTML = "이미 등록된 이메일입니다.";
-		                 }
-			      } else {
-			        messageElem.style.color = "red";
-			        messageElem.innerHTML = "서버 에러가 발생했습니다.";
-			      }
-			    }
-			  };
-			  xhr.open("POST", "/company/checkEmail?email=" + email);
-			  xhr.send();
-			}
-			</script>
-           
-      </div>
-      </main>
-   </div>
-</body>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="../resources/static/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="../resources/static/vendor/select2/select2.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="../resources/static/js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>
+<!-- end document-->

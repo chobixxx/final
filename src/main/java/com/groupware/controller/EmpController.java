@@ -67,28 +67,19 @@ public class EmpController {
 	
 	//로그인
 	@PostMapping("/login")
-	public ModelAndView login(HttpSession session, @RequestParam String email, @RequestParam String password) {
-	    ModelAndView mv = new ModelAndView();
-	    
-	    // 이메일과 비밀번호를 사용하여 로그인을 시도
-	    boolean loginSuccess = empService.login(email, password);
+	public String login(HttpSession session, @RequestParam String email, @RequestParam String password) {
+	    boolean loginSuccess = empService.login(session, email, password);
 	    
 	    if(loginSuccess) {
-	        // 로그인 성공 시, 세션에 로그인 정보 저장
-	        session.setAttribute("email", email);
-	        session.setAttribute("loginStatus", "true");
-	        if(email.equals("admin@gmail.com")) {
-	        	mv.setViewName("adminmain"); // 메인 페이지로 이동(admin)
-	        }else {
-	        	mv.setViewName("main"); // 메인 페이지로 이동(user)
+	        String userRole = (String) session.getAttribute("userRole");
+	        if(userRole.equals("admin")) {
+	            return "adminmain"; // 메인 페이지로 이동(admin)
+	        } else {
+	            return "main"; // 메인 페이지로 이동(user)
 	        }
 	    } else {
-	        // 로그인 실패 시, 로그인 폼 페이지로 다시 이동
-	        mv.addObject("error", "이메일 또는 비밀번호가 일치하지 않습니다.");
-	        mv.setViewName("index");
+	        return "redirect:/"; // 로그인 실패 시, index 페이지로 다시 이동
 	    }
-	    
-	    return mv;
 	}
 	
 	
@@ -98,7 +89,7 @@ public class EmpController {
 	    // 세션에서 로그인 정보 제거
 	    session.removeAttribute("email");
 	    session.removeAttribute("loginStatus");
-	    return "index";
+	    return "redirect:/";
 	}
 	
 	
@@ -111,13 +102,15 @@ public class EmpController {
 	
 	//이메일&이름으로 비밀번호 찾기
 	@PostMapping("findPw")
-	public ModelAndView findPassword(@RequestParam("email") String email, @RequestParam("name") String name) {
+	public String findPassword(Model model, @RequestParam("email") String email, @RequestParam("name") String name) {
 	    String password = empService.findPw(email, name);
-	    ModelAndView mv = new ModelAndView("employee/findPwSucecess");
-	    mv.addObject("password", password);
-	    mv.addObject("email", email);
-	    mv.addObject("name", name);
-	    return mv;
+	    if (password == null) { // 검색 결과가 없을 경우 findFail.jsp로 이동
+	        return "employee/findFail";
+	    }
+	    model.addAttribute("password", password);
+	    model.addAttribute("email", email);
+	    model.addAttribute("name", name);
+	    return "employee/findPwSucecess";
 	}
 	
 	
@@ -130,13 +123,15 @@ public class EmpController {
 	
 	//사번&비밀번호로 이메일 찾기
 	@PostMapping("findEmail")
-	public ModelAndView findEmail(@RequestParam("empNo") Integer empNo, @RequestParam("password") String password) {
+	public String findEmail(Model model, @RequestParam("empNo") Integer empNo, @RequestParam("password") String password) {
 	    String email = empService.findEmail(empNo, password);
-	    ModelAndView mv = new ModelAndView("employee/findEmailSucecess");
-	    mv.addObject("email", email);
-	    mv.addObject("empNo", empNo);
-	    mv.addObject("password", password);
-	    return mv;
+	    if (email == null) { // 검색 결과가 없을 경우 findFail.jsp로 이동
+	        return "employee/findFail";
+	    }
+	    model.addAttribute("email", email);
+	    model.addAttribute("empNo", empNo);
+	    model.addAttribute("password", password);
+	    return "employee/findEmailSucecess";
 	}
-
+	
 }
