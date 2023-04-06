@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.groupware.dto.EmployeeDTO;
 import com.groupware.entity.Employee;
+import com.groupware.exception.LoginFailedException;
 import com.groupware.exception.MessageException;
+import com.groupware.exception.NotExistException;
 import com.groupware.service.EmpService;
 
 @Controller
@@ -65,9 +67,8 @@ public class EmpController {
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session, @RequestParam String email, @RequestParam String password) {
-	    Employee emp = empService.login(email, password);
-	    
-	    if(emp != null) {
+	    try {
+	        Employee emp = empService.login(email, password);
 	        session.setAttribute("emp", emp);
 	        
 	        if(emp.getEmail().equals("admin@gmail.com")) {
@@ -77,17 +78,21 @@ public class EmpController {
 	        }
 	        
 	        return "redirect:/main";
-	        
-	    } else {
-	        return "redirect:/"; // 로그인 실패 시, index 페이지로 다시 이동
+	    } catch(LoginFailedException e) {
+	        return "redirect:/";
 	    }
 	}
 
 
 	//admin 계정으로 로그인
 	@RequestMapping(value = "/adminmain", method = RequestMethod.GET)
-	public String adminMain(Model model) {
-	    return "adminmain";
+	public String adminMain(HttpSession session, Model model) {
+	    String userRole = (String) session.getAttribute("userRole");
+	    if (userRole != null && userRole.equals("admin")) {
+	        return "adminmain";
+	    } else {
+	        return "redirect:/"; // 관리자가 아닐 경우, 로그인 페이지로 이동
+	    }
 	}
 	
 	
@@ -111,14 +116,15 @@ public class EmpController {
 	//이메일&이름으로 비밀번호 찾기
 	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
 	public String findPassword(Model model, @RequestParam("email") String email, @RequestParam("name") String name) {
-	    String password = empService.findPw(email, name);
-	    if (password == null) { // 검색 결과가 없을 경우 findFail.jsp로 이동
+	    try {
+	        String password = empService.findPw(email, name);
+	        model.addAttribute("password", password);
+	        model.addAttribute("email", email);
+	        model.addAttribute("name", name);
+	        return "employee/findPwSucecess";
+	    } catch (NotExistException e) {
 	        return "employee/findFail";
 	    }
-	    model.addAttribute("password", password);
-	    model.addAttribute("email", email);
-	    model.addAttribute("name", name);
-	    return "employee/findPwSucecess";
 	}
 	
 	
@@ -132,14 +138,15 @@ public class EmpController {
 	//사번&비밀번호로 이메일 찾기
 	@RequestMapping(value = "/findEmail", method = RequestMethod.POST)
 	public String findEmail(Model model, @RequestParam("empNo") Integer empNo, @RequestParam("password") String password) {
-	    String email = empService.findEmail(empNo, password);
-	    if (email == null) { // 검색 결과가 없을 경우 findFail.jsp로 이동
+	    try {
+	        String email = empService.findEmail(empNo, password);
+	        model.addAttribute("email", email);
+	        model.addAttribute("empNo", empNo);
+	        model.addAttribute("password", password);
+	        return "employee/findEmailSucecess";
+	    } catch (NotExistException e) {
 	        return "employee/findFail";
 	    }
-	    model.addAttribute("email", email);
-	    model.addAttribute("empNo", empNo);
-	    model.addAttribute("password", password);
-	    return "employee/findEmailSucecess";
 	}
 	
 }

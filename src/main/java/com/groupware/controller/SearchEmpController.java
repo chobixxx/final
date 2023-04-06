@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.groupware.dto.EmployeeDTO;
 import com.groupware.entity.Employee;
+import com.groupware.exception.NotExistException;
 import com.groupware.service.EmpService;
 
 @Controller
@@ -28,7 +29,7 @@ public class SearchEmpController {
 	
 	//전체 직원 목록 - http://localhost:8024/company/allEmp
 	@RequestMapping(value = "/allEmp", method = RequestMethod.GET)
-	public ModelAndView getEmployees(HttpSession session) {
+	public ModelAndView getEmployees(HttpSession session) throws NotExistException {
 	    ModelAndView mv = new ModelAndView();
 	    String userRole = (String) session.getAttribute("userRole");
 	    
@@ -68,9 +69,13 @@ public class SearchEmpController {
 	//직원 정보 수정(admin) - 폼으로 이동
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateEmp(@RequestParam("empNo") Integer empNo, Model model) {
-		Employee employee = empService.findByEmpNo(empNo);
-		model.addAttribute("employee", employee); // 수정된 employee 객체를 model에 추가
-		return "list/update";
+	    try {
+	        Employee employee = empService.findByEmpNo(empNo);
+	        model.addAttribute("employee", employee);
+	        return "list/update";
+	    } catch (NotExistException e) {
+	        return "redirect:/error?message=" + e.getMessage();
+	    }
 	}
 	
 	
@@ -85,7 +90,7 @@ public class SearchEmpController {
 	//직원 정보 삭제(admin)
 	@Transactional
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String deleteEmp(@RequestParam("empNo") Integer empNo, Model model) {
+	public String deleteEmp(@RequestParam("empNo") Integer empNo, Model model) throws NotExistException {
 	    empService.deleteEmp(empNo);
 	    List<EmployeeDTO> employees = empService.getAllEmployees();
 	    model.addAttribute("employees", employees);
