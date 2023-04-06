@@ -1,81 +1,88 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="com.groupware.entity.*, java.util.ArrayList"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>직원 조회</title>
+<!doctype html>
+<html lang="ko">
+  <head>
+  	<title>Table 03</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<style type="text/css">
-	.tg  {border-collapse:collapse;border-spacing:0; width: 60%;}
-	.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-	  overflow:hidden;padding:10px 5px;word-break:normal;}
-	.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-	  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-	.tg .tg-baqh{text-align:center;vertical-align:top}
-	.tg .tg-l4e4{background-color:#000000;border-color:inherit;color:#ffffff; font-weight:bold;text-align:center;vertical-align:top}
-	</style>
+	<link href='../resources/static/https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
-</head>
+	<link rel="stylesheet" href="../resources/static/https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="../resources/static/css/style.css">
+
+	</head>
+	
 <body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">NAEIL TOUR</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h4 class="text-center mb-4">직원 목록</h4>
+						<form action="searchEmp" method="post" class="form-inline">
+						    <div class="form-group mr-2">
+						        <input type="text" class="form-control" name="search" placeholder="찾는 이름을 입력하세요." style="width: 200px;">
+						    </div>
+						    <button type="submit" class="btn btn-primary">검색</button>
+						</form>	<br>
+					<div class="table-wrap">
+						<table class="table table-striped">
+							<thead class="thead-primary">
+								<tr>
+									<th>NO</th>
+									<th>NAME</th>
+									<th>EMAIL</th>
+									<th>TEAM</th>
+									<th>POSITION</th>
+									<th>GENDER</th>
+								</tr>
+							</thead>
+							<tbody>
+							    <c:forEach var="employee" items="${employees}">
+							        <tr>
+							            <th scope="row" class="scope">${employee.empNo}</th>
+							            <td>${employee.name}</td>
+							            <td>${employee.email}</td>
+							            <td>${employee.team}</td>
+							            <td>${employee.position}</td>
+							            <td>${employee.gender}</td>
+							        </tr>
+							    </c:forEach>
+							    <c:if test="${empty employees}">
+							        <tr>
+							            <td colspan="6" class="text-center">검색 결과가 없습니다.</td>
+							        </tr>
+							    </c:if>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+			<div class="w-full text-center p-t-55">
+			    <a href="/main" class="btn btn-primary mr-2">
+			        Back to Main
+			    </a>
+			    <button onclick="history.back()" class="btn btn-secondary">Go Back</button>
+			</div>
+	</section>
 
-<center>
-<h3>직원 정보 조회</h3>
+	<script src="../resources/static/js/jquery.min.js"></script>
+  <script src="../resources/static/js/popper.js"></script>
+  <script src="../resources/static/js/bootstrap.min.js"></script>
+  <script src="../resources/static/js/main.js"></script>
 
-    <!-- board seach area -->
-	<div id="board-search">
-	  <div class="container">
-	    <div class="search-window">
-	      <form action="${pageContext.request.contextPath}/company/searchName" method="get">
-	        <div class="search-wrap">
-	          <label for="search" class="blind">직원 검색</label>
-	          <%-- <input id="search" type="text" name="name" placeholder="직원 이름 입력" value="${Employee.name}"> --%>
-	          <button type="submit" class="btn btn-dark">검색</button>
-	        </div>
-	      </form>
-	    </div>
-	  </div>
-	</div>
-	<br> 
-
-<%-- 고객이 미 존재시 : 현존하는 고객은 없습니다 / 존재할 경우 table로 출력 --%>
-<c:if test="${not empty employees}">
-    <table class="tg">
-        <thead>
-            <tr>
-                <th class="tg-l4e4">이름</th>
-                <th class="tg-l4e4">메일</th>
-                <th class="tg-l4e4">부서</th>
-                <th class="tg-l4e4">직급</th>
-                <th class="tg-l4e4">성별</th>
-            </tr>
-        </thead>    
-        <c:forEach var="employee" items="${employees}">
-            <tr>
-                <td class="tg-baqh">${employee.name}</td>
-                <td class="tg-baqh">${employee.email}</td>
-                <td class="tg-baqh">${employee.team}</td>
-                <td class="tg-baqh">${employee.position}</td>
-                <td class="tg-baqh">${employee.gender}</td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-
-<!-- 	<div class="text-center">
-		<ul class="pagination">
-		<a href="#">1</a>
-		<a href="#">2</a>
-		<a href="#">3</a>
-		</ul>
-	</div> -->
-
-
-<p>
-<a href="/main">메인</a> 
-
-</center>
-</body>
+	</body>
 </html>
+
