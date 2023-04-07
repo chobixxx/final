@@ -8,79 +8,61 @@
 <meta charset="UTF-8">
 <title>사원등록 정보</title>
 <style>
-  table{
-    text-align: center;
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  th, td {
-    border: 1px solid gray;
-    height: 75px;
-  }
-  th{   
-    height:100px;
-    background-color: black;
-    color:white;
-    font-size: 30px;
-    font-weight: bold;
-  }
-  .title{
-    font-weight: bold;
-  }
-  .form-wrapper {
-    width:600px;
-    text-align: center;
-    margin: 200px auto;          
-  }
-  #JoinInfoForm{
-    text-align: center;
-  }
-  input[type=text], input[type=password]  {
-    border: 0 solid black;
-    width: 200px;
-    height:30px;
-  }
-  
-
-  select {
-    width: 200px;
-    height:40px;
-    font-size: 15px;  
-  }
-  option {
-    padding-left: 40px;
-  }
-  #check {
-    font-size: 10px; 
-  }
-  
-  /* button */
-  .btn_Login{
-    width: 130px; 
-    height:45px;
-    background-color:black;
-    color:white;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .btn_Login:hover{
-    width: 130px; 
-    height:45px;
-    background-color:white;
-    border: 1px solid black;
-    color:black;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .btn_div{
-    margin-top: 50px;
-    text-align: center;
-  }
-  .btn_span {
-    margin-right: 10px;
-  }  
-
+	body {
+	  background-color: #f2f2f2;
+	  font-family: Arial, sans-serif;
+	}
+	
+	.entire-wrap {
+	  max-width: 800px;
+	  margin: 0 auto;
+	  padding: 20px;
+	  background-color: #fff;
+	  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	  border-radius: 5px;
+	  box-sizing: border-box;
+	  text-align: center;
+	}
+	
+	table {
+	  border-collapse: collapse;
+	  width: 100%;
+	  margin-top: 20px;
+	  margin-bottom: 20px;
+	}
+	
+	th {
+	  font-size: 16px;
+	  font-weight: bold;
+	  text-align: center;
+	  padding: 10px;
+	  background-color: #333;
+	  color: #fff;
+	}
+	
+	td {
+	  font-size: 14px;
+	  text-align: center;
+	  padding: 10px;
+	  border: 1px solid #ddd;
+	}
+	
+	a {
+	  color: #333;
+	  text-decoration: none;
+	  font-weight: bold;
+	  margin-top: 20px;
+	  display: inline-block;
+	  border-radius: 5px;
+	  padding: 10px;
+	  background-color: #f2f2f2;
+	  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+	}
+	
+	a:hover {
+	  background-color: #333;
+	  color: #fff;
+	}
 </style>
 </head>
 <body>  
@@ -106,6 +88,6 @@
 			</div>
 		</main>
    </div>
-   &nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/">메인 화면 이동</a>
+   <center><a href="${pageContext.request.contextPath}/">Login</a></center>
 </body>
 </html>

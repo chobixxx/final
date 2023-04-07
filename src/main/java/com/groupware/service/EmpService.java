@@ -110,10 +110,13 @@ public class EmpService {
     
     //직원 정보 수정 후 저장
 	public void updateEmp(Employee employee) throws DataAccessResourceFailureException {
+	    if (employee.getEmail() == null) {
+	        throw new IllegalArgumentException("이메일 항목은 비워둘 수 없습니다.");
+	    }
 	    try {
 	        empRepository.save(employee);
 	    } catch (Exception e) {
-	        throw new DataAccessResourceFailureException("Failed to update employee", e);
+	        throw new DataAccessResourceFailureException("직원 정보 수정에 실패했습니다.", e);
 	    }
 	}
     

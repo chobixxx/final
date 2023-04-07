@@ -81,9 +81,12 @@ public class SearchEmpController {
 	
 	//직원 정보 수정(admin)
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateEmp(@ModelAttribute("employee") Employee employee) {
+	public ModelAndView updateEmp(@ModelAttribute("employee") Employee employee) {
 	    empService.updateEmp(employee);
-	    return "search/updateSuccess";
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("employee", employee);
+	    mav.setViewName("redirect:/company/allEmp");
+	    return mav;
 	}
 	
 	
