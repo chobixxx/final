@@ -19,12 +19,7 @@ public class HomeController {
 	//메인으로 이동
 	@GetMapping("/main")
 	public String main(Model model, HttpSession session) {
-	    String userRole = (String) session.getAttribute("userRole");
-	    if(userRole.equals("admin")) {
-	        return "adminmain";
-	    } else {
 	        return "main";
-	    }
 	}
 
 }
