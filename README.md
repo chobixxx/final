@@ -52,6 +52,7 @@
 
 ## 💾 ERD
 
+![groupware](https://user-images.githubusercontent.com/122348810/230708390-77970d5c-ae6a-4196-b89d-c1db5f3b94a4.png)
 
 <br>
 
