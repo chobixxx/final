@@ -3,6 +3,7 @@ package com.groupware.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +12,7 @@ import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Service;
 
 import com.groupware.dto.EmployeeDTO;
+import com.groupware.entity.Document;
 import com.groupware.entity.Employee;
 import com.groupware.exception.LoginFailedException;
 import com.groupware.exception.MessageException;

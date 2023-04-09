@@ -57,6 +57,7 @@
 					<li><a href="../company/allEmp" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
 					<li><a href="../message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
 					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
+					<li><a href="../approval/allview" id="portfolio-link"><span class="icon solid fa-envelope">결재관리</span></a></li>
 				</ul>
 			</nav>
 
