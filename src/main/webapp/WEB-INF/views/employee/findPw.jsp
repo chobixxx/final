@@ -1,101 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="imgbg">
 <head>
 	<title>비밀번호 찾기</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="../resources/static/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/static/vendor/pw/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/static/vendor/pw/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../resources/static/vendor/pw/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/static/vendor/pw/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/static/vendor/pw/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../resources/static/vendor/pw/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../resources/static/css/pw/util.css">
-	<link rel="stylesheet" type="text/css" href="../resources/static/css/pw/main.css">
-<!--===============================================================================================-->
+	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+main * { font-family: 'Noto Sans KR', sans-serif; }
+article { padding: 0; overflow: hidden; }
+article.grid { margin-top:50px;margin-bottom:50px; }
+article div { padding: 1rem; }
+@media (min-width: 576px) {
+	body > main { padding: 1.25rem 0; }
+	article div { padding: 1.25rem; }
+}
+@media (min-width: 768px) {
+	body > main { padding: 1.5rem 0; }
+	article div { padding: 1.5rem; }
+}
+@media (min-width: 992px) {
+	body > main { padding: 1.75rem 0; }
+	article div { padding: 1.75rem; }
+}
+@media (min-width: 1200px) {
+	body > main { padding: 2rem 0; }
+	article div { padding: 2rem; }
+}
+.login-btn-box { padding: 0;margin-top: 50px; }
+.login-btn-box > div { padding:0; text-align:center; }
+.login-btn-box > div a { font-size:14px; }
+
+html.imgbg { background-image: url(../resources/static/images/in5.jpg); background-size: cover;background-position: center; height: 100%; overflow:hidden; }
+html.imgbg article.grid { background-color: rgb(255 255 255 / 80%); }
+html.imgbg body { overflow-y: scroll; height: 100%; }
+</style>
 </head>
+
 <body>
-	
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-			<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-				<form action="${pageContext.request.contextPath}/company/findPw" method="post" class="login100-form validate-form flex-sb flex-w">
-					<span class="login100-form-title p-b-53">
-						FIND PASSWORD
-					</span>
-					
-					<div class="p-t-31 p-b-9">
-						<span class="txt1">
-							EMAIL
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input" data-validate = "Username is required">
-						<input class="input100" type="text" id="email" name="email" required >
-						<span class="focus-input100"></span>
-					</div>
-					
-					<div class="p-t-13 p-b-9">
-						<span class="txt1">
-							NAME
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="text" id="name" name="name" required >
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="container-login100-form-btn m-t-17">
-						<button type="submit" class="login100-form-btn">
-							FIND
-						</button>
-					</div>
-				</form>
-				<div class="w-full text-center p-t-55">
-						<span class="txt2">
-							Forget Email?
-						</span>
-						<a href="findEmail" class="txt2 bo1">
-							Find Email
-						</a>
-					</div>
-			</div>
-		</div>
-	</div>
-	
-
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="../resources/static/vendor/pw/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/static/vendor/pw/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/static/vendor/pw/bootstrap/js/popper.js"></script>
-	<script src="../resources/static/vendor/pw/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/static/vendor/pw/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/static/vendor/pw/daterangepicker/moment.min.js"></script>
-	<script src="../resources/static/vendor/pw/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/static/vendor/pw/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="../resources/static/pw/js/main.js"></script>
+	<main class="container">
+		<article class="grid">
+	        <div>
+	          <hgroup style="margin-bottom: 50px;">
+	            <h2>비밀번호 찾기</h2>
+	            <h3>FIND PASSWORD</h3>
+	          </hgroup>
+	          <form action="${pageContext.request.contextPath}/company/findPw" method="post" class="login100-form validate-form">
+	            <input type="text" id="email" name="email" placeholder="Email" aria-label="Email" required>
+	            <input type="text" id="name" name="name" placeholder="Name" aria-label="name" required>
+	            <button type="submit" class="contrast">FIND</button>
+	            <div style="padding:0; padding-top:30px; font-size:14px;">
+					Forget Email? <a class="txt2" href="findEmail">Find Email</a>
+				</div>
+	          </form>
+	        </div>
+	        <div style="background-image: url('../resources/static/images/in3.jpg');background-size: cover;background-position: center;"></div>
+	    </article>
+	</main>
 
 </body>
 </html>
