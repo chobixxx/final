@@ -92,4 +92,16 @@
 
 ![find](https://user-images.githubusercontent.com/122348810/230769788-b64509f9-4c50-41ad-ac2f-9a082bf1f07e.jpg)
 
+* 메인 - 공지사항 게시판
+
+![Cap 2023-04-09 22-19-40-616](https://user-images.githubusercontent.com/122348810/230775694-dbb97a70-86ad-400d-8884-6f1020611478.jpg)
+
+* 자유 게시판
+
+![Cap 2023-04-09 22-19-49-781](https://user-images.githubusercontent.com/122348810/230775792-b2e980e7-c5a4-4657-beba-1448c40fedbe.jpg)
+
+* 직원 목록 게시판
+
+![Cap 2023-04-09 22-19-57-912](https://user-images.githubusercontent.com/122348810/230775816-149b448b-0cf5-4e06-8907-29733f4099bf.jpg)
+
 
