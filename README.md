@@ -104,6 +104,10 @@
 
 ![Cap 2023-04-09 22-19-57-912](https://user-images.githubusercontent.com/122348810/230775816-149b448b-0cf5-4e06-8907-29733f4099bf.jpg)
 
+* 메시지 게시판
+
+![Cap 2023-04-09 22-20-37-615](https://user-images.githubusercontent.com/122348810/230777943-eb7e2cb8-f0d8-4842-af1a-ca26dcc7145a.png)
+
 * 투두리스트 게시판
 
 ![Cap 2023-04-09 22-52-11-223](https://user-images.githubusercontent.com/122348810/230777901-4c8e4af3-5eb7-4795-80a7-910fbe6b36a1.jpg)
