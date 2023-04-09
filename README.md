@@ -52,7 +52,7 @@
 
 ## 💾 ERD
 
-![groupware](https://user-images.githubusercontent.com/122348810/230708390-77970d5c-ae6a-4196-b89d-c1db5f3b94a4.png)
+![groupware](https://user-images.githubusercontent.com/122348810/230769641-608ae525-ddde-4a62-b65c-928caf03ac77.png)
 
 <br>
 
@@ -75,4 +75,21 @@
 <br>
 
 ## 📚 주요 기능
+
+* 로그인 화면
+
+![Cap 2023-04-09 00-54-25-777](https://user-images.githubusercontent.com/122348810/230769709-64be4043-d84c-47f3-bc5d-7f286d0df048.jpg)
+
+* 회원가입 화면
+
+![Cap 2023-04-09 01-07-19-502](https://user-images.githubusercontent.com/122348810/230769753-3fe25f2a-a85d-4c8c-b7f2-a3e25b360e1a.jpg)
+
+![Cap 2023-04-09 01-09-55-323](https://user-images.githubusercontent.com/122348810/230769771-b3446937-7ead-41a0-bf78-92934c39d6d1.jpg)
+
+* 비밀번호 찾기
+
+![Cap 2023-04-09 01-08-49-355](https://user-images.githubusercontent.com/122348810/230769782-a982c465-c770-4559-9eea-44fbf12208f1.jpg)
+
+![find](https://user-images.githubusercontent.com/122348810/230769788-b64509f9-4c50-41ad-ac2f-9a082bf1f07e.jpg)
+
 
