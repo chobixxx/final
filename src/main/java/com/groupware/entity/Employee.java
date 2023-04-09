@@ -70,9 +70,5 @@ public class Employee {
 		return employee;
 	}
 
-	//ApproverService에서 사용하는 생성자
-	public Object getId() {
-		return null;
-	}
 
 }

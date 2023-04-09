@@ -143,9 +143,5 @@ public class EmpService {
         return employees;
     }
 
-    // 결재에서 쓰는것
-    public Employee findByEmail(String email) {
-        return empRepository.findByEmail(email);
-    }
 	
 }
