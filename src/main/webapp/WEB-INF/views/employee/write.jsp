@@ -88,7 +88,7 @@
 											<option value="경영팀">경영팀</option>
 											<option value="기획팀">기획팀</option>
 											<option value="인사팀">인사팀</option>
-											<option value="관리팀">영업팀</option>
+											<option value="영업팀">영업팀</option>
 										</select>
 										<div class="select-dropdown"></div>
 									</div>

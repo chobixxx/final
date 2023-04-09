@@ -1,5 +1,6 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap');
 
 /*
 	Prologue by HTML5 UP
@@ -254,7 +255,7 @@ input, select {
 /* Basic */
 
 	html {
-		box-sizing: border-box;
+		box-sizing: border-box;font-family: 'Noto Sans KR', sans-serif;
 	}
 
 	*, *:before, *:after {
@@ -263,7 +264,7 @@ input, select {
 
 	body {
 		background: #fff;
-		font-family: 'Source Sans Pro', sans-serif;
+		/*font-family: 'Source Sans Pro', sans-serif;*/
 		font-size: 19pt;
 		font-weight: 300;
 		line-height: 1.75em;
@@ -2147,7 +2148,7 @@ input, select {
   background-color: #f1f1f1;
   padding: 30px;
   text-align: center;
-  font-size: 35px;
+  font-size: 35px; margin-left:300px;
 }
 	#header2 {
 		display: -moz-flex;
@@ -2171,7 +2172,7 @@ input, select {
 		position: fixed;
 		text-align: right;
 		top: 0;
-		width: 375px;
+		width: 300px;
 	}
 
 		#header2 .top {
@@ -2749,3 +2750,7 @@ input, select {
 
 	}
 	
+.listEmp table { width:100%; min-width:unset !important; }
+.listEmp table th,
+.listEmp table td { padding:0px; }
+.listEmp .table-wrap { overflow:auto; }

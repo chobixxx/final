@@ -1,3 +1,4 @@
+
 package com.groupware.entity;
 
 import javax.persistence.Column;
