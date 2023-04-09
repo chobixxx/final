@@ -5,22 +5,23 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.groupware.dto.EmployeeDTO;
 import com.groupware.entity.Employee;
+import com.groupware.exception.LoginFailedException;
 import com.groupware.exception.MessageException;
-import com.groupware.repository.EmpRepository;
+import com.groupware.exception.NotExistException;
 import com.groupware.service.EmpService;
 
 @Controller
 @RequestMapping("company")
+@SessionAttributes({ "emp","empNo", "employeeName"})
 public class EmpController {
 	
 	@Autowired
@@ -28,14 +29,14 @@ public class EmpController {
 	
 	
 	//회원가입 폼으로 이동 - http://localhost:8024/company/join
-	@GetMapping("/join")
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String joinForm() {
 		return "employee/write";
 	}
 	
 	
 	//회원가입
-	@PostMapping("/join")
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinEmp(@ModelAttribute("EmployeeDTO") EmployeeDTO employeeDTO, Model model) throws MessageException {
 		try {
 			empService.save(employeeDTO);
@@ -49,8 +50,8 @@ public class EmpController {
 	
 	
 	//이메일 중복 확인
-	@PostMapping("checkEmail")
 	@ResponseBody
+	@RequestMapping(value = "/checkEmail", method = RequestMethod.POST)
     public String checkEmail(@RequestParam("email") String email) {
         try {
             Employee existEmployee = empService.checkEmail(email);
@@ -66,25 +67,40 @@ public class EmpController {
 	
 	
 	//로그인
-	@PostMapping("/login")
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session, @RequestParam String email, @RequestParam String password) {
-	    boolean loginSuccess = empService.login(session, email, password);
-	    
-	    if(loginSuccess) {
-	        String userRole = (String) session.getAttribute("userRole");
-	        if(userRole.equals("admin")) {
-	            return "adminmain"; // 메인 페이지로 이동(admin)
+	    try {
+	        Employee emp = empService.login(email, password);
+	        session.setAttribute("emp", emp);
+	        
+	        if(emp.getEmail().equals("admin@gmail.com")) {
+	            session.setAttribute("userRole", "admin");
 	        } else {
-	            return "main"; // 메인 페이지로 이동(user)
+	            session.setAttribute("userRole", "user");
 	        }
+	        
+	        return "redirect:../NoticeServlet/noticeallviewmain";
+	    } catch(LoginFailedException e) {
+	        return "redirect:/";
+	    }
+	}
+
+
+	//admin 계정으로 로그인
+	@RequestMapping(value = "/adminmain", method = RequestMethod.GET)
+	public String adminMain(HttpSession session, Model model) {
+	    String userRole = (String) session.getAttribute("userRole");
+	    if (userRole != null && userRole.equals("admin")) {
+	        return "adminmain";
 	    } else {
-	        return "redirect:/"; // 로그인 실패 시, index 페이지로 다시 이동
+	        return "redirect:/"; // 관리자가 아닐 경우, 로그인 페이지로 이동
 	    }
 	}
 	
+
 	
 	//로그아웃
-	@GetMapping("/logout")
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 	    // 세션에서 로그인 정보 제거
 	    session.removeAttribute("email");
@@ -94,44 +110,46 @@ public class EmpController {
 	
 	
 	//비밀번호 찾기 폼으로 이동
-	@GetMapping("findPw")
+	@RequestMapping(value = "/findPw", method = RequestMethod.GET)
 	public String findPw() {
 		return "employee/findPw";
 	}
 	
 	
 	//이메일&이름으로 비밀번호 찾기
-	@PostMapping("findPw")
+	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
 	public String findPassword(Model model, @RequestParam("email") String email, @RequestParam("name") String name) {
-	    String password = empService.findPw(email, name);
-	    if (password == null) { // 검색 결과가 없을 경우 findFail.jsp로 이동
+	    try {
+	        String password = empService.findPw(email, name);
+	        model.addAttribute("password", password);
+	        model.addAttribute("email", email);
+	        model.addAttribute("name", name);
+	        return "employee/findPwSucecess";
+	    } catch (NotExistException e) {
 	        return "employee/findFail";
 	    }
-	    model.addAttribute("password", password);
-	    model.addAttribute("email", email);
-	    model.addAttribute("name", name);
-	    return "employee/findPwSucecess";
 	}
 	
 	
 	//이메일 찾기 폼으로 이동
-	@GetMapping("findEmail")
+	@RequestMapping(value = "/findEmail", method = RequestMethod.GET)
 	public String findEmail() {
 		return "employee/findEmail";
 	}
 	
 	
 	//사번&비밀번호로 이메일 찾기
-	@PostMapping("findEmail")
+	@RequestMapping(value = "/findEmail", method = RequestMethod.POST)
 	public String findEmail(Model model, @RequestParam("empNo") Integer empNo, @RequestParam("password") String password) {
-	    String email = empService.findEmail(empNo, password);
-	    if (email == null) { // 검색 결과가 없을 경우 findFail.jsp로 이동
+	    try {
+	        String email = empService.findEmail(empNo, password);
+	        model.addAttribute("email", email);
+	        model.addAttribute("empNo", empNo);
+	        model.addAttribute("password", password);
+	        return "employee/findEmailSucecess";
+	    } catch (NotExistException e) {
 	        return "employee/findFail";
 	    }
-	    model.addAttribute("email", email);
-	    model.addAttribute("empNo", empNo);
-	    model.addAttribute("password", password);
-	    return "employee/findEmailSucecess";
 	}
 	
 }

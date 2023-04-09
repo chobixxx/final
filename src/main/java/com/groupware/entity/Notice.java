@@ -1,3 +1,4 @@
+
 package com.groupware.entity;
 
 import javax.persistence.Column;
@@ -51,9 +52,9 @@ public class Notice {
 	@Column(length = 50, nullable = false)
 	private int hit;
 	
-//	@ManyToOne
-//	@NonNull
-//	@JoinColumn(name="emp_no")
+	@ManyToOne
+	@NonNull
+	@JoinColumn(name="emp_no")
 	   private Employee empNo;
 	
 	public Notice (int no,String title,String content,String password,Employee employeeno) {
