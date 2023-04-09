@@ -20,6 +20,7 @@ import com.groupware.service.EmpService;
 
 @Controller
 @RequestMapping("company")
+@SessionAttributes({ "emp","empNo", "employeeName"})
 public class EmpController {
 	
 	@Autowired
@@ -95,6 +96,7 @@ public class EmpController {
 	    }
 	}
 	
+
 	
 	//로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

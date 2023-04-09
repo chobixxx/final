@@ -5,33 +5,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>main</title>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="preconnect1" href="https://fonts.googleapis.com">
-	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../resources/static/assets/css/yy.css" />
-</head>
 
+<style>
+</style>
+<title>admin notice</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<link rel="preconnect1" href="https://fonts.googleapis.com">
+<link rel="preconnect2" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/yy.css" />
+
+
+
+</head>	
 <body class="is-preload">
-
 <div class="header1"  style="box-sizing: border-box;" >
-	<div align="center">
-		<span>
-			<img src="../resources/static/images/logo.png" style="width:130px; height:130px;" align="center">
-		</span>
-		<div align="right" style="font-size:18px;">
-		  <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
-		</div>
-	</div>
+<div align="center">
+<span>
+<img src="../images/logo.png" style="width:130px; height:130px;" align="center">
+</span>
+<div align="right">
+  <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
 </div>
+</div>
+
+ </div>
 	<!-- Header -->
 	<div id="header2">
 
 		<div class="top">
 
+			<!-- Logo -->
 			<!-- Logo -->
 			<div id="logo">
 				<span class="image avatar48"><img src="../resources/static/images/avatar.jpg"
@@ -43,12 +53,10 @@
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
-					<li><a href="../board/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
-					<li><a href="../company/allEmp" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
-					<li><a href="../message/viewmessage/${sessionScope.employeeNo}" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
-					<li><a href="${pageContext.request.contextPath}/todolist/viewtodolist/${sessionScope.emp.empNo}" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
-					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
-					
+					<li><a href="${pageContext.request.contextPath}/BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/message/viewmessage/${sessionScope.employeeNo}" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/todolist/viewtodolist/${sessionScope.employeeNo}" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
 				</ul>
 			</nav>
 
@@ -78,6 +86,7 @@
 	<br><br>
 	<div id="main">
 
+
 		<div class="page-title">
 			<div class="container1">
 				<h3>공지사항</h3>
@@ -104,7 +113,7 @@
 								<tr>
 									<td colspan="5">
 										<p align="center">
-											<b><span style="font-size: 12pt;">등록된 방명록이 없습니다3.</span></b>
+											<b><span style="font-size: 12pt;">등록된 방명록이 없습니다.</span></b>
 										</p>
 									</td>
 								</tr>
@@ -130,17 +139,20 @@
 		</div>
 	<br>
 	<div align="right">
-	</div>
+	<button type="button" onclick="location.href = '../notice/write.html'" style="background-color:#555">
+		<i class='far fa-file-alt' style='font-size:12px;color:white' >&nbsp;글쓰기</i>
+		
+	</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	</div>
 	<br><br>
 
 		<!-- Scripts -->
-		<script src="resources/static/assets/js/jquery.min.js"></script>
-		<script src="resources/static/assets/js/jquery.scrolly.min.js"></script>
-		<script src="resources/static/assets/js/jquery.scrollex.min.js"></script>
-		<script src="resources/static/assets/js/browser.min.js"></script>
-		<script src="resources/static/assets/js/breakpoints.min.js"></script>
-		<script src="resources/static/assets/js/util.js"></script>
-		<script src="resources/static/assets/js/main.js"></script>
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.scrolly.min.js"></script>
+		<script src="../assets/js/jquery.scrollex.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
 </body>
 </html>
