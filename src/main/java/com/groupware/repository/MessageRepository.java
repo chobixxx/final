@@ -10,4 +10,6 @@ import com.groupware.entity.Message;
 public interface MessageRepository extends JpaRepository<Message, Integer> {
 	List<Message> findAllByReceiver(Employee employee);
 	List<Message> findAllBySender(Employee employee);
+	
+	void deleteById(int Id);
 }
