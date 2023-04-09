@@ -47,6 +47,7 @@
 					<li><a href="../company/allEmp" id="portfolio-link"><span class="icon solid fa-th">직원목록</span></a></li>
 					<li><a href="../message/viewmessage/${sessionScope.employeeNo}" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
 					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
+					<li><a href="../document/listDoc" id="portfolio-link"><span class="icon solid fa-envelope">결재</span></a></li>
 				</ul>
 			</nav>
 
