@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: tiger
+    password: vndtjs12!
     url: jdbc:mysql://localhost/hta?characterEncoding=UTF-8
     username: root
   jpa:
@@ -13,6 +13,10 @@ spring:
     generate-ddl: false
     hibernate:
       ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  
     show-sql: true
   mvc:
     view:

@@ -1,10 +1,15 @@
 package com.groupware.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.groupware.dto.EmployeeDTO;
@@ -56,7 +61,13 @@ public class Employee {
         this.empNo = empNo;
      }
 	
-	
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private List<Message> list1 = new ArrayList<Message>();
+    
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    private List<Message> list2 = new ArrayList<Message>();
+    
+    
 	public static Employee toEmployee(EmployeeDTO employeeDTO) {
 		Employee employee = new Employee();
 		employee.setEmpNo(employeeDTO.getEmpNo());

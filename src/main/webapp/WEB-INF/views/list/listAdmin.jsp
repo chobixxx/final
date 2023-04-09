@@ -83,6 +83,7 @@
 								<th>TEAM</th>
 								<th>POSITION</th>
 								<th>GENDER</th>
+								<th>UPDATE</th>
 								<th></th>
 							</tr>
 						</thead>

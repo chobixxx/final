@@ -48,7 +48,6 @@ create table reply
    writedate date not null,
    emp_no Integer not null,
    board_no Integer not null
-   
 );
 
 create table Board 
@@ -99,4 +98,5 @@ create table message(
 	constraint m_sender foreign key(sender) references employee(emp_no),
 	constraint m_receiver foreign key(receiver) references employee(emp_no)
 );
+
 

@@ -79,7 +79,7 @@ public class EmpController {
 	            session.setAttribute("userRole", "user");
 	        }
 	        
-	        return "redirect:/main";
+	        return "redirect:../NoticeServlet/noticeallviewmain";
 	    } catch(LoginFailedException e) {
 	        return "redirect:/";
 	    }

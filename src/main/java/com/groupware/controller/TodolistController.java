@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.groupware.dto.TodolistDTO;
 import com.groupware.entity.Employee;
 import com.groupware.exception.MessageException;
+import com.groupware.exception.NotExistException;
 import com.groupware.service.EmpService;
 import com.groupware.service.TodolistService;
 
@@ -67,7 +68,7 @@ public class TodolistController {
 	
 //	todolist 작성
 	@PostMapping(value = "/inserttodolist")
-	public String insert(Model model, @ModelAttribute("TodolistDTO") TodolistDTO tDto, @RequestParam("empNo") String empNo) throws SQLException, IOException, MessageException {
+	public String insert(Model model, @ModelAttribute("TodolistDTO") TodolistDTO tDto, @RequestParam("empNo") String empNo) throws SQLException, IOException, MessageException, NumberFormatException, NotExistException {
 	    Employee employee = empSve.findByEmpNo(Integer.parseInt(empNo));
 	    tDto.setEmpNo(employee.getEmpNo());
 	    tdSve.save(tDto);
