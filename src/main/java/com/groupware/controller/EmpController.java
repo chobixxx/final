@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.groupware.dto.EmployeeDTO;
 import com.groupware.entity.Employee;
@@ -117,16 +118,12 @@ public class EmpController {
 	
 	//이메일&이름으로 비밀번호 찾기
 	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
-	public String findPassword(Model model, @RequestParam("email") String email, @RequestParam("name") String name) {
-	    try {
-	        String password = empService.findPw(email, name);
-	        model.addAttribute("password", password);
-	        model.addAttribute("email", email);
-	        model.addAttribute("name", name);
-	        return "employee/findPwSucecess";
-	    } catch (NotExistException e) {
-	        return "employee/findFail";
-	    }
+	public String findPassword(Model model, @RequestParam("email") String email, @RequestParam("name") String name) throws NotExistException {
+	    String password = empService.findPw(email, name);
+		model.addAttribute("password", password);
+		model.addAttribute("email", email);
+		model.addAttribute("name", name);
+		return "employee/findPwSucecess";
 	}
 	
 	
@@ -139,16 +136,12 @@ public class EmpController {
 	
 	//사번&비밀번호로 이메일 찾기
 	@RequestMapping(value = "/findEmail", method = RequestMethod.POST)
-	public String findEmail(Model model, @RequestParam("empNo") Integer empNo, @RequestParam("password") String password) {
-	    try {
-	        String email = empService.findEmail(empNo, password);
-	        model.addAttribute("email", email);
-	        model.addAttribute("empNo", empNo);
-	        model.addAttribute("password", password);
-	        return "employee/findEmailSucecess";
-	    } catch (NotExistException e) {
-	        return "employee/findFail";
-	    }
+	public String findEmail(Model model, @RequestParam("empNo") Integer empNo, @RequestParam("password") String password) throws NotExistException {
+	    String email = empService.findEmail(empNo, password);
+		model.addAttribute("email", email);
+		model.addAttribute("empNo", empNo);
+		model.addAttribute("password", password);
+		return "employee/findEmailSucecess";
 	}
 	
 }
