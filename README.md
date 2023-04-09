@@ -104,6 +104,10 @@
 
 ![Cap 2023-04-09 22-19-49-781](https://user-images.githubusercontent.com/122348810/230775792-b2e980e7-c5a4-4657-beba-1448c40fedbe.jpg)
 
+* 자유 게시판 - 리플
+
+![Cap 2023-04-10 01-35-44-901](https://user-images.githubusercontent.com/122348810/230785163-304b77a2-b9dc-48c6-8dff-125ec3ea0437.png)
+
 * 직원 목록 게시판
 
 ![Cap 2023-04-09 22-19-57-912](https://user-images.githubusercontent.com/122348810/230775816-149b448b-0cf5-4e06-8907-29733f4099bf.jpg)
