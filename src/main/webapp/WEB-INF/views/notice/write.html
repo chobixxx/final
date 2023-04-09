@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>notice write</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<link rel="preconnect1" href="https://fonts.googleapis.com">
+<link rel="preconnect2" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/yy.css" />
+
+
+
+</head>	
+<body class="is-preload">
+<div class="header1"  style="box-sizing: border-box;" >
+<div align="center">
+<span>
+<img src="../images/logo.png" style="width:130px; height:130px;" align="center">
+</span>
+<div align="right">
+  <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
+</div>
+</div>
+
+ </div>
+	<!-- Header -->
+	<div id="header2">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="../resources/static/images/avatar.jpg"
+					alt="" /></span>
+				<h1 id="title">${sessionScope.emp.empNo}｜${sessionScope.emp.name}</h1>
+				<p>${sessionScope.emp.email}</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="../BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
+					<li><a href="../search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="../message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
+				</ul>
+			</nav>
+
+		</div>
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span
+						class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span
+						class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span
+						class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span
+						class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+	<!-- Main -->
+	<br><br>
+	<div id="main" align="center">
+	
+
+ <form action="../NoticeServlet/noticeinsert" method="post">
+
+
+<table align="center" cellpadding="5" cellspacing="2" width="80%" border="1">
+
+    <tr>
+        <td width="1220" height="20" colspan="2" bgcolor="black">
+            <p align="center"><font color="white" size="3"><b>공지 작성</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="150" height="20">
+            <p align="right"><b><span style="font-size:9pt;">제 목</span></b></p>
+        </td>
+        <td width="450" height="20" ><b><span style="font-size:9pt;">
+		<input type=text name="title" size="50"></span></b></td>
+    </tr>
+    <tr>
+        <td width="150" height="20">
+            <p align="right"><b><span style="font-size:9pt;">내 용</span></b></p>
+        </td>
+        <td width="450" height="20"><b><span style="font-size:9pt;">
+		<textarea name="content" cols="50" rows="10"></textarea></span></b></td>
+    </tr>
+    <tr>
+        <td width="150" height="20">
+            <p align="right"><b><span style="font-size:9pt;">비밀번호</span></b></p>
+        </td>
+        <td width="450" height="20">
+        	<b><span style="font-size:9pt;">
+        		<input type=password name="password" size="12">(글 수정, 삭제시 필요합니다.)
+        	   </span></b>
+        </td>
+    </tr>
+    <tr>
+        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;">
+        <input type=submit value=글쓰기> 
+        <input type=reset value=다시쓰기></span></b></td>
+    </tr>
+</table>
+</form>
+</div>
+<hr>
+<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.scrolly.min.js"></script>
+		<script src="../assets/js/jquery.scrollex.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+</body>
+</html>

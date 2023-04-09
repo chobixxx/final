@@ -143,5 +143,10 @@ public class EmpService {
         return employees;
     }
 
+
+	public Object fineRole(int attribute) {
+		
+		return null;
+	}
 	
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.groupware.dto.EmployeeDTO;
 import com.groupware.entity.Employee;
 
 @Repository
