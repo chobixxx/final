@@ -43,7 +43,7 @@ public class MessageController {
 	public MessageService messageService;
 
 	
-	//받은 편지함
+	//받은 메시지함
 	@GetMapping(value =  "/received/{empNo}", produces = "application/json; charset=UTF-8")
 	public ModelAndView received(@PathVariable int empNo) throws SQLException {	
 		
