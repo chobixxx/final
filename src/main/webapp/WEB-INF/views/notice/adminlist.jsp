@@ -39,15 +39,14 @@
 	<!-- Header -->
 	<div id="header2">
 
-		<div class="top">
+				<div class="top">
 
-			<!-- Logo -->
 			<!-- Logo -->
 			<div id="logo">
 				<span class="image avatar48"><img src="../resources/static/images/avatar.jpg"
 					alt="" /></span>
 				<h1 id="title">${sessionScope.emp.empNo}｜${sessionScope.emp.name}</h1>
-				<p>${sessionScope.emp.email}</p>
+				<p>${sessionScope.emp.email}</p> 
 			</div>
 
 			<!-- Nav -->

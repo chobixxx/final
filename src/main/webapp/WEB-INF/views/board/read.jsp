@@ -18,6 +18,28 @@
 
 </HEAD>
 
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="../resources/static/images/avatar.jpg"
+					alt="" /></span>
+				<h1 id="title">${sessionScope.emp.empNo}｜${sessionScope.emp.name}</h1>
+				<p>${sessionScope.emp.email}</p> 
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="../board/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
+					<li><a href="../company/allEmp" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="../message/received/${sessionScope.emp.empNo}" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/todolist/viewtodolist/${sessionScope.emp.empNo}" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
+					<li><a href="../document/listDoc" id="portfolio-link"><span class="icon solid fa-envelope">결재</span></a></li>
+				</ul>
+			</nav>
+
+		</div>
 			<table align="center" cellpadding="5" cellspacing="2" width="60%"
 				border='1'>
 				<tr>
