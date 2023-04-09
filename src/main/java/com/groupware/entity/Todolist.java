@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
+import com.groupware.dto.TodolistDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,13 +32,11 @@ public class Todolist {
    @NonNull
    private String title;//제목
    @NonNull
-   private String content;//내용
-   @NonNull
    private int importance;//중요도
    @NonNull
-   private String date;//날짜
+   private String h;//시
    @NonNull
-   private String time;//시간
+   private String min;//분
    @ManyToOne
    @NonNull
    @JoinColumn(name="emp_no")
@@ -50,18 +50,27 @@ public String toString() {
 	builder.append(empNo.getEmpNo());
 	builder.append(", title=");
 	builder.append(title);
-	builder.append(", content=");
-	builder.append(content);
 	builder.append(", importance=");
 	builder.append(importance);
 	builder.append(", date=");
-	builder.append(date);
+	builder.append(h);
 	builder.append(", time=");
-	builder.append(time);
+	builder.append(min);
 	builder.append("]");
 	return builder.toString();
 }
 
+public static Todolist toTodolist(TodolistDTO tDto) {
+	   Todolist todolist = new Todolist();
+	   todolist.setEmpNo(new Employee(tDto.getEmpNo()));
+	   todolist.setH(tDto.getH());
+	   todolist.setImportance(tDto.getImportance());
+	   todolist.setMin(tDto.getMin());
+	   todolist.setNum(tDto.getNum());
+	   todolist.setTitle(tDto.getTitle());
+	   
+	   return todolist;
+	}
    
    
 

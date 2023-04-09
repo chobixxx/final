@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.groupware.dto.BoardDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +30,6 @@ import lombok.Setter;
 @Setter
 
 
-//@NamedQuery(name = "Board.allBoard",
-//query = "select b from Board b order by no desc")
 @Entity
 public class Board {
 	@Id
@@ -59,10 +59,12 @@ public class Board {
 	@ManyToOne
 	@NonNull
 	@JoinColumn(name="emp_no")
-	   private Employee empNo;
+	private Employee empNo;
 	
+
 	@OneToMany(mappedBy = "boardNo" , cascade = CascadeType.ALL)
 	private List<Reply> reply = new ArrayList<Reply>();
+	
 	
 	public Board(int no) {
 		this.no = no;
@@ -96,5 +98,18 @@ public class Board {
 
 	       return builder.toString();
 	    }
+
+	public static Board toBoard(BoardDTO boardDTO) {
+		Board board = new Board();
+		board.setNo(boardDTO.getNo());
+		board.setEmpNo(boardDTO.getEmpNo());
+		board.setTitle(boardDTO.getTitle());
+		board.setContent(boardDTO.getContent());
+		board.setHit(boardDTO.getHit());
+		board.setWritedate(boardDTO.getWritedate());
+		board.setPassword(boardDTO.getPassword());
+		
+		return board;
+	}
 
 }

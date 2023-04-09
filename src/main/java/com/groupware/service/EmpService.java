@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.groupware.dto.EmployeeDTO;
 import com.groupware.entity.Employee;
+import com.groupware.exception.LoginFailedException;
 import com.groupware.exception.MessageException;
 import com.groupware.repository.EmpRepository;
 
@@ -41,25 +42,13 @@ public class EmpService {
 
 	
 	//로그인
-	public boolean login(HttpSession session, String email, String password) {
-	    Employee employee = empRepository.findByEmailAndPassword(email, password);
-	    if(employee == null) {
-	        return false; // 로그인 실패
-	    } else {
-	        // 세션에 사용자 정보 저장
-	        session.setAttribute("email", email);
-	        session.setAttribute("name", employee.getName());
-	        session.setAttribute("empNo", employee.getEmpNo());
-	        session.setAttribute("loginStatus", "true");
-	        session.setAttribute("userRole", employee.getRole());
-	        
-	        if(employee.getRole().equals("admin")) {
-	            return true; // 관리자 계정 로그인 성공
-	        } else {
-	            return true; // 일반 사용자 로그인 성공
-	        }
-	    }
-	}
+	   public Employee login(String email, String password) throws LoginFailedException {
+	       Employee employee = empRepository.findByEmailAndPassword(email, password);
+	       if (employee == null) {
+	           throw new LoginFailedException("Invalid email or password");
+	       }
+	       return employee;
+	   }
 	
 	
 	//이름&이메일로 비밀번호 찾기
@@ -132,5 +121,11 @@ public class EmpService {
         List<Employee> employees = empRepository.findByName(name);
         return employees;
     }
+
+
+	public Object fineRole(int attribute) {
+		
+		return null;
+	}
 	
 }

@@ -10,5 +10,5 @@ import com.groupware.entity.Notice;
 @Repository
 public interface NoticeRepository extends JpaRepository<Notice, Integer>{
 
-	List<Notice> findAllOrderByNoDesc();
+	List<Notice> findAll();
 }

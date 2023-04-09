@@ -9,18 +9,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.groupware.dto.EmployeeDTO;
 import com.groupware.entity.Employee;
+import com.groupware.exception.LoginFailedException;
 import com.groupware.exception.MessageException;
 import com.groupware.repository.EmpRepository;
 import com.groupware.service.EmpService;
 
 @Controller
 @RequestMapping("company")
+@SessionAttributes({ "emp","empNo", "employeeName"})
 public class EmpController {
 	
 	@Autowired
@@ -66,22 +70,23 @@ public class EmpController {
 	
 	
 	//로그인
-	@PostMapping("/login")
-	public String login(HttpSession session, @RequestParam String email, @RequestParam String password) {
-	    boolean loginSuccess = empService.login(session, email, password);
-	    
-	    if(loginSuccess) {
-	        String userRole = (String) session.getAttribute("userRole");
-	        if(userRole.equals("admin")) {
-	            return "adminmain"; // 메인 페이지로 이동(admin)
-	        } else {
-	            return "main"; // 메인 페이지로 이동(user)
-	        }
-	    } else {
-	        return "redirect:/"; // 로그인 실패 시, index 페이지로 다시 이동
-	    }
-	}
-	
+	   @RequestMapping(value = "/login", method = RequestMethod.POST)
+	   public String login(HttpSession session, @RequestParam String email, @RequestParam String password) {
+	       try {
+	           Employee emp = empService.login(email, password);
+	           session.setAttribute("emp", emp);
+	           session.setMaxInactiveInterval(60*60);
+	           if(emp.getEmail().equals("admin@gmail.com")) {
+	               session.setAttribute("userRole", "admin");
+	           } else {
+	               session.setAttribute("userRole", "user");
+	           }
+	           
+	           return "redirect:../NoticeServlet/noticeallviewmain";
+	       } catch(LoginFailedException e) {
+	           return "redirect:/";
+	       }
+	   }
 	
 	//로그아웃
 	@GetMapping("/logout")

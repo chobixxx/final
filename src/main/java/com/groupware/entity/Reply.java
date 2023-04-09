@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
+import com.groupware.dto.ReplyDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,28 +45,26 @@ public class Reply {
 	@ManyToOne
 	@NonNull
 	@JoinColumn(name="emp_no")
-	   private Employee empNo;
+	private Employee empNo;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@NonNull
-	@JoinColumn(name="boardNo")
+	@JoinColumn(name="board_no")
 	private Board boardNo;
+
+
+	public static Reply toReply(ReplyDTO replyDTO) {
+		Reply reply = new Reply();
+		reply.setBoardNo(replyDTO.getBoardNo());
+		reply.setContent(replyDTO.getContent());
+		reply.setEmpNo(replyDTO.getEmpNo());
+		reply.setNo(replyDTO.getNo());
+		reply.setWritedate(replyDTO.getWritedate());
+
+		return reply;
+	}
 	
-	 @Override
-	    public String toString() {
-	       StringBuilder builder = new StringBuilder();
-	       builder.append("게시판 번호 : ");
-	       builder.append(no);
-	       builder.append(", 내용 : ");
-	       builder.append(content);
-	       builder.append(", 작성일 : ");
-	       builder.append(writedate);
-	       builder.append(", 사원번호: ");
-	   	   builder.append(empNo.getEmpNo());
-	       builder.append(", 게시판번호: ");
-	       builder.append(boardNo.getNo());
-	       return builder.toString();
-	    }
-	
+
 	
 }
