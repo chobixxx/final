@@ -58,6 +58,10 @@
 
 <br>
 
+## ✒️ 프로세스 다이어그램
+
+![groupware](https://user-images.githubusercontent.com/122348810/230803474-114752f6-b62d-4b46-b37e-1c226cfc4ba0.jpg)
+
 ## 📄 기능 구현
 
 * 최종관
@@ -119,4 +123,10 @@
 * 투두리스트 게시판
 
 ![Cap 2023-04-09 22-52-11-223](https://user-images.githubusercontent.com/122348810/230777901-4c8e4af3-5eb7-4795-80a7-910fbe6b36a1.jpg)
+
+* 결재 게시판
+
+![KakaoTalk_20230410_090540732](https://user-images.githubusercontent.com/122348810/230803143-b6c5c0b9-dc2d-4308-af13-a49694610542.png)
+
+![KakaoTalk_20230410_090612156](https://user-images.githubusercontent.com/122348810/230803066-88e0e5c3-352f-40b1-a369-0dbee1c79161.png)
 
