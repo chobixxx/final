@@ -1,35 +1,36 @@
 package com.groupware.service;
 
 public enum DocumentStatus {
-    PENDING("결재대기중"),
-    APPROVED("결재완료"),
-    REJECTED("반려"),
-    HOLD("보류");
+    결재대기중("결재대기중"),
+    결재완료("결재완료"),
+    반려("반려"),
+    보류("보류");
 
     private String text;
 
     DocumentStatus(String text) {
         this.text = text;
     }
+    
+    public static DocumentStatus fromText(String text) {
+        for (DocumentStatus status : DocumentStatus.values()) {
+            if (status.getText().equalsIgnoreCase(text)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Invalid document status: " + text);
+    }
 
     public String getText() {
         return text;
     }
 
-    public enum ApprovalStatus {
-        APPROVING("결재 중"),
-        APPROVED("결재 완료"),
-        REJECTED("반려"),
-        HOLD("보류");
-
-        private String text;
-
-        ApprovalStatus(String text) {
-            this.text = text;
+    public static DocumentStatus fromString(String text) {
+        for (DocumentStatus status : DocumentStatus.values()) {
+            if (status.text.equalsIgnoreCase(text)) {
+                return status;
+            }
         }
-
-        public String getText() {
-            return text;
-        }
+        return null;
     }
 }

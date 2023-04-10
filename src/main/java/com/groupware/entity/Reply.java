@@ -48,7 +48,7 @@ public class Reply {
 	private Employee empNo;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne//(fetch = FetchType.LAZY)
 	@NonNull
 	@JoinColumn(name="board_no")
 	private Board boardNo;
