@@ -9,71 +9,72 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import com.groupware.dto.DocumentDTO;
 import com.groupware.service.DocumentStatus;
-import com.groupware.service.DocumentStatus.ApprovalStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
+@ToString
 
 @Entity
+@Table(name = "document")
 public class Document {
 
-    public static final String Status = null;
-
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "emp_no")
-	private Integer empNo;
-
-    private String title;
-
-    private String content;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "doc_num")
+    private Long docNum;
     
     @Enumerated(EnumType.STRING) // Enum 타입을 문자열로 매핑
-    private DocumentStatus status; // status 필드와 Enum 타입의 매핑 설정
+    private DocumentStatus status = DocumentStatus.결재대기중; // status 필드와 Enum 타입의 매핑 설정
     
-    private Timestamp created_date;
+    public String getStatusText() {
+        return this.status.getText();
+    }
     
+    public DocumentStatus getStatus() {
+        if (status == null) {
+            return DocumentStatus.결재대기중;
+        }
+        return status;
+    }
     
-    
-//    @ManyToOne
-//    private Approver approver;
+    public void setStatus(DocumentStatus status) {
+        if (status == null) {
+            this.status = DocumentStatus.결재대기중;
+        } else {
+            this.status = status;
+        }
+    } 
 
-//	public Approver getApprover() {
-//		return null;
-//	}
+    @NonNull
+    private String title;
 
-//	public Object getEmployee() {
-//		return this.approver;
-//	}
+    @NonNull
+    private String author;
 
-	public void setApprover(Object approver) {
-		
-	}
+    @NonNull
+    @Column(columnDefinition = "TEXT")
+    private String content;
 
-	public void setEmployee(Object employee) {
-		
-	}
-
-	public void setStatus(DocumentStatus approved) {
-		
-	}
-	
-//	public String getEmail() {
-//        return this.approver.getEmail();
-//    }
-
-	public void setStatus(ApprovalStatus approving) {
-		
+	public static Document toDocument(DocumentDTO documentDTO) {
+		Document document = new Document();
+		document.setDocNum(documentDTO.getDocNum());
+		document.setTitle(documentDTO.getTitle());
+		document.setAuthor(documentDTO.getAuthor());
+		document.setContent(documentDTO.getContent());
+		document.setStatus(documentDTO.getStatus());
+		return document;
 	}
 
 }
