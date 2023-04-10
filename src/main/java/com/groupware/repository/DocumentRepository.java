@@ -14,3 +14,4 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
 	void deleteByDocNum(Long docNum);
 
 }
+ 
