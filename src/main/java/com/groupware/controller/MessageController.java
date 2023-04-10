@@ -70,7 +70,7 @@ public class MessageController {
 
 	
 	//메시지 보내기
-    @PostMapping(value = "/send")
+    	@PostMapping(value = "/send")
 	public void send(MessageDto dto, Model model, HttpServletResponse res) throws Exception {
 		
 		int empNo = (int) model.getAttribute("empNo");
@@ -80,29 +80,29 @@ public class MessageController {
 		res.sendRedirect("sent/" + empNo);
 	}
     
-    //send.jsp 호출
-    @RequestMapping(value = "/viewSendPage/{empNo}", method = RequestMethod.GET)
-    public ModelAndView viewSendPage(@PathVariable("empNo") int empNo, Model model) {
+    	//send.jsp 호출
+    	@RequestMapping(value = "/viewSendPage/{empNo}", method = RequestMethod.GET)
+    	public ModelAndView viewSendPage(@PathVariable("empNo") int empNo, Model model) {
     	
-    	ModelAndView mv = new ModelAndView();
+    		ModelAndView mv = new ModelAndView();
 
-    	model.addAttribute("empNo", empNo);
+    		model.addAttribute("empNo", empNo);
 		
 		mv.addObject("empNo", empNo);
 		mv.setViewName("../views/message/send");
 		
 		return mv;
-    }
+    	}
 
     
-    //받은 메시지 삭제
-    @GetMapping(value = "/receivedDelete")
-    public void receivedDelete(int id, int empNo, HttpServletResponse res) throws Exception {
+    	//받은 메시지 삭제
+   	@GetMapping(value = "/receivedDelete")
+    	public void receivedDelete(int id, int empNo, HttpServletResponse res) throws Exception {
     	
 		messageService.deleteMessageByReceiver(id, empNo);
 
 		res.sendRedirect("received/" + empNo);
-    }
+    	}
 
 	
 	//보낸 메시지 삭제
